@@ -1,8 +1,15 @@
-﻿namespace DevShed.Services
+﻿using DSComponents;
+using System;
+
+namespace DevShed.Services
 {
     public class StateContainer : IStateContainer
     {
-        public StateContainer()
-        {}
+        public IDSCService DSCService { get; set; }
+        
+        public StateContainer(IDSCService dscService)
+        {
+            DSCService = dscService;
+        }
     }
 }

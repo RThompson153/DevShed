@@ -1,15 +1,25 @@
 ﻿@using DevShed.Services
 @inherits LayoutComponentBase
-@inject IStateContainer StateContainer
+@inject IDSCService DSCService
 
-<CascadingValue Value="StateContainer">
-    <div class="page">
+<CascadingValue Value="DSCService">
+    <div class="page" @onclick="closeDropdowns">
         <div class="sidebar">
             <NavMenu />
         </div>
 
-        <div class="content px-4">
+        <div class="col-12 px-4">
             @Body
         </div>
     </div>
 </CascadingValue>
+
+@code{
+    protected override Task OnInitializedAsync()
+    {
+        //DSCService.Message += StateHasChanged;
+
+        return base.OnInitializedAsync();
+    }
+    private void closeDropdowns() => DSCService.CloseDropdowns();
+}
