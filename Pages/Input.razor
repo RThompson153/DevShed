@@ -1,0 +1,35 @@
+﻿@page "/input"
+
+@using DSComponents.Input
+@using DSComponents.Input.Enums
+@using DSComponents.Input.Models
+@using DevShed.Services
+
+<h3>Input Components</h3>
+
+<div class="col-6">
+	<div class="col-4">
+		@foreach(var dscSelect in _dscSelects)
+		{
+			<DSCSelect Config="@dscSelect" @bind-Expanded="@dscSelect.Expanded">
+				@foreach(var item in _items)
+				{
+					<DSCSelectItem Value="@item" />
+				}
+			</DSCSelect>
+		}
+	</div>
+</div>
+
+@code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
+	private List<DSCInputConfig> _dscSelects = new List<DSCInputConfig>
+	{
+		new DSCInputConfig {Name = "One"},
+		new DSCInputConfig {Name = "Two"}
+	};
+
+	private IEnumerable<object> _items = new List<object> { "Item 1", "Item 2", "Item 3" };
+}

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevShed", "DevShed.csproj", "{3FEE3C69-3098-47FE-8E29-26FD2EF968D9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSComponents", "..\DSComponents\DSComponents\DSComponents.csproj", "{1F3B3E26-AA38-4DF5-88CE-E9172A5B2421}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3FEE3C69-3098-47FE-8E29-26FD2EF968D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FEE3C69-3098-47FE-8E29-26FD2EF968D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FEE3C69-3098-47FE-8E29-26FD2EF968D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3B3E26-AA38-4DF5-88CE-E9172A5B2421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3B3E26-AA38-4DF5-88CE-E9172A5B2421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3B3E26-AA38-4DF5-88CE-E9172A5B2421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3B3E26-AA38-4DF5-88CE-E9172A5B2421}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

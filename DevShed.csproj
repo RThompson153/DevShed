@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.3" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DSComponents\DSComponents\DSComponents.csproj" />
+  </ItemGroup>
+
 </Project>
