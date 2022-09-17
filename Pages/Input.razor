@@ -12,7 +12,7 @@
 		@foreach(var dscSelect in _dscSelects)
 		{
 			<DSCSelect Config="@dscSelect" @bind-Expanded="@dscSelect.Expanded">
-				@foreach(var item in _items)
+				@foreach(var item in dscSelect.SelectItems)
 				{
 					<DSCSelectItem Value="@item" />
 				}
@@ -27,9 +27,7 @@
 
 	private List<DSCInputConfig> _dscSelects = new List<DSCInputConfig>
 	{
-		new DSCInputConfig {Name = "One"},
-		new DSCInputConfig {Name = "Two"}
+		new DSCInputConfig {Name = "One", SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" } },
+		new DSCInputConfig {Name = "Two", SelectItems = new List<object>{ "Item 4", "Item 5", "Item 6" } , Multiple = true}
 	};
-
-	private IEnumerable<object> _items = new List<object> { "Item 1", "Item 2", "Item 3" };
 }
