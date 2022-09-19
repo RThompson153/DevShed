@@ -8,17 +8,17 @@
 <h3>Input Components</h3>
 
 <div class="col-6">
-	<div class="col-4">
-		@foreach(var dscSelect in _dscSelects)
-		{
+	@foreach(var dscSelect in _dscSelects)
+	{
+		<div class="col-4">
 			<DSCSelect Config="@dscSelect" @bind-Expanded="@dscSelect.Expanded">
 				@foreach(var item in dscSelect.SelectItems)
 				{
 					<DSCSelectItem Value="@item" />
 				}
 			</DSCSelect>
-		}
-	</div>
+		</div>
+	}
 </div>
 
 @code {
@@ -27,7 +27,8 @@
 
 	private List<DSCInputConfig> _dscSelects = new List<DSCInputConfig>
 	{
-		new DSCInputConfig {Name = "One", SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" } },
-		new DSCInputConfig {Name = "Two", SelectItems = new List<object>{ "Item 4", "Item 5", "Item 6" } , Multiple = true, Searchable = true}
+		//new DSCInputConfig {Name = "Standard", SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" }, Label = new DSCLabelConfig {Label = "Multiple Search", Position = LabelPosition.TopLeft } },
+		new DSCInputConfig {Name = "Multiple", SelectItems = new List<object>{ "Item 4", "Item 5", "Item 6" } , Multiple = true, Label = new DSCLabelConfig {Label = "Multiple Search", Position = LabelPosition.InlineTop }},
+		//new DSCInputConfig {Name = "Multiple Search", SelectItems = new List<object>{ "Item 7", "Item 8", "Item 9" } , Multiple = true, Searchable = true, Label = new DSCLabelConfig {Label = "Multiple Search", Position = LabelPosition.InlineTopLeft } }
 	};
 }
