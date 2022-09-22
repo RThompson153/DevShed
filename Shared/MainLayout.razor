@@ -3,11 +3,13 @@
 @inject IStateContainer StateContainer
 
 <CascadingValue Value="StateContainer">
+    <div class="d-flex justify-content-center shadow">
+        <div class="icon"></div>
+        <NavMenu />
+    </div>
+
     <div class="container-fluid" @onclick="closeDropdowns">
-        <div class="d-flex justify-content-between">
-            <div class="icon"></div>
-            <NavMenu />
-        </div>
+        
 
         <div class="row">
             <div class="container col-8">
