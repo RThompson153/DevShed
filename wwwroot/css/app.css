@@ -1,4 +1,6 @@
-﻿.side-nav {
+﻿@import url('markup.css');
+
+.side-nav {
 	width: 15rem;
 	height: calc(100vh - 2.5rem);
 }
@@ -19,23 +21,27 @@
 	cursor: pointer;
 }
 
-.component-example h3 {
+.component-example .section {
 	margin: 0;
 	padding: 0 1rem;
 	border-right: 1px solid #dee2e6;
 	border-left: 1px solid #dee2e6;
 }
 
-.component-example h3:hover{
+.component-example .section:hover{
 	background-color: #dee2e6;
 }
 
-.component-example h3:first-of-type {
+.component-example .section:first-of-type {
 	padding-left: 0;
 	border-left: none;
 }
 
-.component-example h3:last-of-type {
+.component-example .section:last-of-type {
 	padding-right: 0;
-	border-right: none;
+	border: none;
+}
+
+.component-example .markup{
+	font-size: 0.8rem;
 }

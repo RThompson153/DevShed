@@ -8,7 +8,7 @@
 
 <h3>DSC Select</h3>
 
-<p>Toggleable, select menu.</p>
+<p>The DSCSelect component is a custom dropdown menu that displays a selectable list of items.  It is fully customizable and supports numerous attributes and variations such as <code>multiple</code>, <code>searchable</code>, and <code>disabled</code>.  The component also supports custom CSS and CSS Overrides, as well as provides event callbacks.</p>
 
 <ComponentExample>
 	<Example>
@@ -21,13 +21,31 @@
 	</Example>
 
 	<Markup>
-		&lt;DSCSelect Config&#61;&#34;&#64;_select&#34; &#64;bind&#45;Expanded&#61;&#34;&#64;_select.Expanded&#34;&gt; <br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&#64;foreach&#40;var item in _select.SelectItems&#41; <br />
+		&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;DSCSelectItem Value&#61;&#34;&#64;item&#34; &#47;&gt; <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
-		&lt;&#47;DSCSelect&gt;
+		&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
 	</Markup>
+
+	<Code>
+		<span class="key">private </span><span class="cmpt">DSCInputConfig </span> _select &#61; <span class="key">new </span><span class="cmpt">DSCInputConfig</span><br />
+		&#123; <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;Name &#61 <span class="param">"Standard"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;SelectItems &#61 <span class="key">new </span><span class="cmpt">List</span>&lt;<span class="key">object</span>&gt;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"Item 1"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"Item 2"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"Item 3"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;Label &#61 <span class="key">new </span><span class="cmpt">DSCLabelConfig</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label &#61; <span class="param">"Standard Select"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position &#61; <span class="enum">LabelPosition</span>.InlineTopLeft<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&#125; <br />
+		&#125; <br />
+	</Code>
 </ComponentExample>
 
 @code {
@@ -36,7 +54,7 @@
 
 	private DSCInputConfig _standardSelect = new DSCInputConfig
 	{
-		Name = "Standard", SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" }, Label = new DSCLabelConfig {Label = "Standard Select", Position = LabelPosition.TopLeft } 
+		Name = "Standard", SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" }, Label = new DSCLabelConfig {Label = "Standard Select", Position = LabelPosition.InlineTopLeft } 
 	};
 
 	//	new DSCInputConfig {Name = "Multiple", SelectItems = new List<object>{ "Item 4", "Item 5", "Item 6" } , Multiple = true, Label = new DSCLabelConfig {Label = "Multiple Select", Position = LabelPosition.InlineTopLeft }},

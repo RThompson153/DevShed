@@ -1,12 +1,22 @@
-﻿<div class="row component-example border py-3">
-	<div class="col-2">
+﻿<div class="row component-example border py-3 bg-light">
+	<div class="col-2 example">
 		@Example
 	</div>
 
-	<div class="col-12 mt-3 py-1 border-top border-bottom">Usage</div>
+	<div class="col-12 d-flex mt-3 py-1 border-top border-bottom">
+		<span class="section cursor-pointer" @onclick="@(() => _section = "usage")">Usage</span>
+		<span class="section cursor-pointer" @onclick="@(() => _section = "config")">Configuration</span>
+	</div>
 
-	<div class="col-12 mt-3 py-1">
-		@Markup
+	<div class="col-12 mt-3 py-1 markup">
+		@if(_section.Equals("usage"))
+		{
+			@Markup
+		}
+		else
+		{
+			@Code
+		}
 	</div>
 </div>
 
@@ -16,5 +26,8 @@
 	public RenderFragment Example { get; set; }
 	[Parameter]
 	public RenderFragment Markup { get; set; }
-	private string _section = "example";
+	[Parameter]
+	public RenderFragment Code { get; set; }
+
+	private string _section = "usage";
 }
