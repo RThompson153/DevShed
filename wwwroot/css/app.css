@@ -1,4 +1,5 @@
-﻿@import url('markup.css');
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('markup.css');
 
 .side-nav {
 	width: 15rem;
@@ -19,6 +20,10 @@
 
 .cursor-pointer{
 	cursor: pointer;
+}
+
+.component-example-head i{
+	margin-left: auto;
 }
 
 .component-example .section {

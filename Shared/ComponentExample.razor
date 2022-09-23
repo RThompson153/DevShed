@@ -1,28 +1,37 @@
-﻿<div class="row mt-5">
-	@Header
-</div>
+﻿<div class="row mt-3 cursor-pointer @((!_expanded) ? "border-bottom" : "")">
+	<div class="col-12 d-flex p-0 component-example-head" @onclick="toggleExpanded">
+		<div class="d-block">
+			@Header
+		</div>
 
-<div class="row component-example border py-3 bg-light">
-	<div class="col-2 example">
-		@Example
-	</div>
-
-	<div class="col-12 d-flex mt-3 py-1 border-top border-bottom">
-		<span class="section cursor-pointer" @onclick="@(() => _section = "usage")">Usage</span>
-		<span class="section cursor-pointer" @onclick="@(() => _section = "config")">Configuration</span>
-	</div>
-
-	<div class="col-12 mt-3 py-1 markup">
-		@if(_section.Equals("usage"))
-		{
-			@Markup
-		}
-		else
-		{
-			@Code
-		}
+		<i class="my-auto oi oi-chevron-@((_expanded) ? "top" : "bottom")"></i>
 	</div>
 </div>
+
+@if(_expanded)
+{
+	<div class="row component-example border py-3 bg-light">
+		<div class="col-2 example">
+			@Example
+		</div>
+
+		<div class="col-12 d-flex mt-3 py-1 border-top border-bottom">
+			<span class="section cursor-pointer" @onclick="@(() => _section = "usage")">Usage</span>
+			<span class="section cursor-pointer" @onclick="@(() => _section = "config")">Configuration</span>
+		</div>
+
+		<div class="col-12 mt-3 py-1 markup">
+			@if(_section.Equals("usage"))
+			{
+				@Markup
+			}
+			else
+			{
+				@Code
+			}
+		</div>
+	</div>
+}
 
 
 @code {
@@ -36,4 +45,7 @@
 	public RenderFragment Code { get; set; }
 
 	private string _section = "usage";
+	private bool _expanded;
+
+	private void toggleExpanded() => _expanded = !_expanded;
 }
