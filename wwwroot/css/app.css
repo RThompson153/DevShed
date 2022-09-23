@@ -45,3 +45,9 @@
 .component-example .markup{
 	font-size: 0.8rem;
 }
+
+.markup{
+	height: 130px;
+	max-height: 130px;
+	overflow-y: auto;
+}
