@@ -2,7 +2,7 @@
 
 .side-nav {
 	width: 15rem;
-	height: calc(100vh - 2.5rem);
+	min-height: calc(100vh - 2.5rem);
 }
 
 .side-nav ul{

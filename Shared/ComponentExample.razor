@@ -1,4 +1,8 @@
-﻿<div class="row component-example border py-3 bg-light">
+﻿<div class="row mt-5">
+	@Header
+</div>
+
+<div class="row component-example border py-3 bg-light">
 	<div class="col-2 example">
 		@Example
 	</div>
@@ -22,6 +26,8 @@
 
 
 @code {
+	[Parameter]
+	public RenderFragment Header { get; set; }
 	[Parameter]
 	public RenderFragment Example { get; set; }
 	[Parameter]
