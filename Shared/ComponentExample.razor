@@ -34,8 +34,8 @@
 					break;
 				case "edit":
 					<div class="col-6 edit">
-						<textarea class="col-12"></textarea>
-						<button type="button" class="cmpt btn btn-secondary py-0">Save</button>
+						<textarea class="col-12" @oninput="@((e) => onInput(e))">@_editedItem</textarea>
+						<button type="button" class="cmpt btn btn-secondary py-0" @onclick="saveItem">Save</button>
 					</div>
 					break;
 				default:
@@ -45,7 +45,6 @@
 		</div>
 	</div>
 }
-
 
 @code {
 	[Parameter]
@@ -58,15 +57,48 @@
 	public RenderFragment Code { get; set; }
 	[Parameter]
 	public DSCInputConfig Item { get; set; }
+	[Parameter]
+	public EventCallback<DSCInputConfig> ItemChangeCallback { get; set; }
 
 	private string _section = "usage";
 	private bool _expanded;
+	private DSCInputConfig _item;
+	private string _editedItem;
 
 	private void toggleExpanded() => _expanded = !_expanded;
 
 	protected override void OnParametersSet()
 	{
-		var json = JsonSerializer.Ser
+
 		base.OnParametersSet();
+	}
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		if(firstRender)
+		{
+			_item = Item;
+
+			_editedItem = JsonSerializer.Serialize(_item);
+		}
+		base.OnAfterRender(firstRender);
+	}
+
+
+	private void saveItem()
+	{
+		_item = JsonSerializer.Deserialize<DSCInputConfig>(_editedItem);
+
+		ItemChangeCallback.InvokeAsync(_item);
+	}
+
+	private void onInput(ChangeEventArgs e)
+	{
+		_editedItem = e.Value.ToString();
+	}
+
+	private void keyup(EventArgs e)
+	{
+		
 	}
 }

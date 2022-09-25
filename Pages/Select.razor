@@ -16,7 +16,7 @@
 	<p></p>
 </div>
 
-<ComponentExample Item="@_standardSelect">
+<ComponentExample Item="@_standardSelect" ItemChangeCallback="itemChange">
 	<Header>
 		<h4>Standard Select</h4>
 	</Header>
@@ -298,4 +298,11 @@
 		Maximum = 3,
 		Label = new DSCLabelConfig { Label = "Min/Max", Position = LabelPosition.InlineTopLeft }
 	};
+
+	private void itemChange(DSCInputConfig item)
+	{
+		_standardSelect = item;
+
+		var meh = item;
+	}
 }
