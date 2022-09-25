@@ -22,7 +22,7 @@
 	cursor: pointer;
 }
 
-.component-example-head i{
+.component-example-head i, .component-example i{
 	margin-left: auto;
 }
 
@@ -55,4 +55,8 @@
 	height: 130px;
 	max-height: 130px;
 	overflow-y: auto;
+}
+
+.markup .edit, .markup .edit textarea {
+	height: 100%;
 }

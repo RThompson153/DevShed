@@ -16,7 +16,7 @@
 	<p></p>
 </div>
 
-<ComponentExample>
+<ComponentExample Item="@_standardSelect">
 	<Header>
 		<h4>Standard Select</h4>
 	</Header>
@@ -42,16 +42,16 @@
 	<Code>
 		<span class="key">private </span><span class="cmpt">DSCInputConfig </span> _select &#61; <span class="key">new </span><span class="cmpt">DSCInputConfig</span><br />
 		&#123; <br />
-		&nbsp;&nbsp;&nbsp;&nbsp;Name &#61 <span class="param">"Standard Select"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;Name &#61 <span class="param">"@_standardSelect.Name"</span>&#44;<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;SelectItems &#61 <span class="key">new </span><span class="cmpt">List</span>&lt;<span class="key">object</span>&gt;<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"Item 1"</span>&#44;<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"Item 2"</span>&#44;<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"Item 3"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(_standardSelect.SelectItems[0])"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(_standardSelect.SelectItems[1])"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(_standardSelect.SelectItems[2])"</span>&#44;<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;Label &#61 <span class="key">new </span><span class="cmpt">DSCLabelConfig</span><br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label &#61; <span class="param">"Standard Select"</span>&#44;<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label &#61; <span class="param">"@_standardSelect.Label.Label"</span>&#44;<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position &#61; <span class="enum">LabelPosition</span>.InlineTopLeft<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&#125; <br />
 		&#125; <br />
