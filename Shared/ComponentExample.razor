@@ -22,6 +22,8 @@
 				@Example
 			</div>
 
+			<div class="mx-3 component-example-exception">@_exception</div>
+
 			<div class="edit-icon d-flex cursor-pointer" @onclick="edit">
 				<span class="my-auto px-3 @((_editing) ? "cmpt" : "")">@((!_editing) ? "Edit" : "Save") Config</span><i class="oi oi-code my-auto @((_editing) ? "cmpt" : "")"></i>
 			</div>
@@ -41,12 +43,17 @@
 						<span class="key">private </span><span class="cmpt">DSCInputConfig </span> _select &#61; <span class="key">new </span><span class="cmpt">DSCInputConfig</span><br />
 						&#123; <br />
 							&nbsp;&nbsp;&nbsp;&nbsp;Name &#61 <span class="param">"@Item.Name"</span>&#44;<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;SelectItems &#61 <span class="key">new </span><span class="cmpt">List</span>&lt;<span class="key">object</span>&gt;<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(Item.SelectItems[0])"</span>&#44;<br />
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(Item.SelectItems[1])"</span>&#44;<br />
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(Item.SelectItems[2])"</span><br />
-							&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;<br />
+							@if(Item.SelectItems?.Any() == true)
+							{
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;SelectItems &#61 <span class="key">new </span><span class="cmpt">List</span>&lt;<span class="key">object</span>&gt;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&#123;</span><br />
+							
+								@foreach(var item in Item.SelectItems)
+								{
+									<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(item)"</span>&#44;</span><br />
+								}
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;</span><br />
+							}
 							&nbsp;&nbsp;&nbsp;&nbsp;Label &#61 <span class="key">new </span><span class="cmpt">DSCLabelConfig</span><br />
 							&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label &#61; <span class="param">"@Item.Label.Label"</span>&#44;<br />
@@ -121,6 +128,16 @@
 							{
 								<span class="param">@Item.Maximum</span>
 							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Timeout &#61; 
+							@if(_editing)
+							{
+								<input type="number" class="editable" value="@Item.Timeout" @onchange="@((e) => update("Timeout", e))" />
+							}
+							else
+							{
+								<span class="param">@Item.Timeout</span>
+							}
 							<br />
 						&#125; <br />
 					</div>
@@ -151,11 +168,19 @@
 	[Parameter]
 	public DSCInputConfig Item { get; set; }
 
-	private string _section = "usage";
+	private string _section, _exception;
 	private bool _expanded, _editing;
 	private PropertyInfo _property;
 
 	private void toggleExpanded() => _expanded = !_expanded;
+
+	protected override void OnParametersSet()
+	{
+		if (Item.Timeout is not null && !Item.HasDelegate)
+			_exception = "! The timeout value will be ignored.";
+
+		base.OnParametersSet();
+	}
 
 	private void edit()
 	{

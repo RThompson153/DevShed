@@ -70,3 +70,7 @@
 .editable:focus{
 	outline: none;
 }
+
+.component-example-exception{
+	color: rgb(155, 0, 0);
+}

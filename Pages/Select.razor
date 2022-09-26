@@ -4,21 +4,20 @@
 @using DSComponents.Input
 @using DSComponents.Input.Enums
 @using DSComponents.Input.Models
-@using DevShed.Services
-@using DevShed.Shared
 
 <h3>DSC Select</h3>
 
 <p>The DSCSelect component is a custom dropdown menu that displays a selectable list of items.  It is fully customizable and supports numerous attributes and variations such as <span class="cmpt">multiple</span>, <span class="cmpt">searchable</span>, <span class="cmpt">minimum</span> and <span class="cmpt">maximum</span> selections, <span class="cmpt">text </span> and <span class="cmpt">background</span> colors, and <span class="cmpt">disabled</span>.  The component also supports custom CSS and CSS Overrides, as well as provides event callbacks.</p>
 
-<ComponentExample Item="@_standardSelect">
+<ComponentExample Item="@_basicSelect">
 	<Header>
-		<h4>Standard Select</h4>
+		<h4>Basic Select</h4>
+		<p>The basic single select.</p>
 	</Header>
 
 	<Example>
-		<DSCSelect Config="@_standardSelect" @bind-Expanded="@_standardSelect.Expanded">
-			@foreach(var item in _standardSelect.SelectItems)
+		<DSCSelect Config="@_basicSelect" @bind-Expanded="@_basicSelect.Expanded">
+			@foreach(var item in _basicSelect.SelectItems)
 			{
 				<DSCSelectItem Value="@item"  />
 			}
@@ -88,136 +87,14 @@
 	</Example>
 </ComponentExample>
 
-<div class="row mt-3">
-	<h4 class="p-0">API</h4>
-	
-	<table class="table table-responsive">
-		<thead>
-			<th>Parameter</th>
-			<th>Type</th>
-			<th>Default Value</th>
-			<th>Binding</th>
-			<th>Description</th>
-		</thead>
-		<tbody>
-			<tr><td colspan="5"><h5>DSCSelect</h5></td></tr>
-			<tr>
-				<td>Config</td>
-				<td>Required - <span class="cmpt">DSCInputConfig</span></td>
-				<td>N/A</td>
-				<td>One-Way</td>
-				<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
-			</tr>
-			<tr>
-				<td>Expanded</td>
-				<td>Required - bool</td>
-				<td>N/A</td>
-				<td>Two-Way</td>
-				<td>Component expanded state.</td>
-			</tr>
-			<tr><td colspan="5"><h5>DSCSelectItem</h5></td></tr>
-			<tr>
-				<td>Value</td>
-				<td>Required - object</td>
-				<td>N/A</td>
-				<td>One-Way</td>
-				<td>Value of the select item.</td>
-			</tr>
-			<tr>
-				<td>SelectCallback</td>
-				<td>Optional - EventCallback</td>
-				<td>null</td>
-				<td>N/A</td>
-				<td>Callback method to fire when selecting an item.</td>
-			</tr>
-			<tr><td colspan="5"><h5>DSCInputConfig</h5></td></tr>
-			<tr>
-				<td>Name</td>
-				<td>Optional - string</td>
-				<td colspan="2">null</td>
-				<td>Name of the component.</td>
-			</tr>
-			<tr>
-				<td>Label</td>
-				<td>Optional - <span class="cmpt">DSCLabelConfig</span></td>
-				<td colspan="2">null</td>
-				<td>Label for the component.</td>
-			</tr>
-			<tr>
-				<td>Minimum</td>
-				<td>Optional - decimal</td>
-				<td colspan="2">0</td>
-				<td>The minimum number of items that can be selected.</td>
-			</tr>
-			<tr>
-				<td>Maximum</td>
-				<td>Optional - decimal</td>
-				<td colspan="2">SelectItems count</td>
-				<td>The maximum number of items that can be selected.</td>
-			</tr>
-			<tr>
-				<td>Multiple</td>
-				<td>Optional - bool</td>
-				<td colspan="2">false</td>
-				<td>If true, multiple items can be selected.</td>
-			</tr>
-			<tr>
-				<td>Searchable</td>
-				<td>Optional - bool</td>
-				<td colspan="2">false</td>
-				<td>If true, the items can be searched and filtered.</td>
-			</tr>
-			<tr>
-				<td>Disabled</td>
-				<td>Optional - bool</td>
-				<td colspan="2">false</td>
-				<td>If true, the component is disabled.</td>
-			</tr>
-			<tr>
-				<td>TextColor</td>
-				<td>Optional - string</td>
-				<td colspan="2">"dsc-white"</td>
-				<td>CSS class for the component text color. Bootstrap classes are supported.</td>
-			</tr>
-			<tr>
-				<td>BackgroundColor</td>
-				<td>Optional - string</td>
-				<td colspan="2">"dsc-bg-white"</td>
-				<td>CSS class for the component background color. Bootstrap classes are supported.</td>
-			</tr>
-			<tr>
-				<td>SelectItems</td>
-				<td>Required - IEnumerable&lt;object&gt;</td>
-				<td colspan="2">N/A</td>
-				<td>The collection of selectable items.</td>
-			</tr>
-			<tr><td colspan="5"><h5>DSCLabelConfig</h5></td></tr>
-			<tr>
-				<td>Label</td>
-				<td>Optional - string</td>
-				<td colspan="2">null</td>
-				<td>The label name for the component.</td>
-			</tr>
-			<tr>
-				<td>LabelPosition</td>
-				<td>Optional - <span class="cmpt">LabelPosition</span></td>
-				<td colspan="2">LabelPosition.TopLeft</td>
-				<td>The position of the component's label.</td>
-			</tr>
-		</tbody>
-	</table>
-	
-</div>
+<APIComponent />
 
 @code {
-	[CascadingParameter]
-	protected IStateContainer StateContainer { get; set; }
-
-	private DSCInputConfig _standardSelect = new DSCInputConfig
+	private DSCInputConfig _basicSelect = new DSCInputConfig
 	{
-		Name = "Standard",
+		Name = "Basic",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
-		Label = new DSCLabelConfig {Label = "Standard Select", Position = LabelPosition.InlineTop }
+		Label = new DSCLabelConfig {Label = "Basic Select", Position = LabelPosition.InlineTopLeft }
 	};
 
 	private DSCInputConfig _multipleSelect = new DSCInputConfig
@@ -225,7 +102,7 @@
 		Name = "Multiple",
 		SelectItems = new List<object> { "Item 1", "Item 2", "Item 3" },
 		Multiple = true,
-		Label = new DSCLabelConfig { Label = "Multiple Select", Position = LabelPosition.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Multiple Select", Position = LabelPosition.InlineTop }
 	};
 
 	private DSCInputConfig _seachableSelect = new DSCInputConfig
@@ -238,6 +115,7 @@
 			"Item 3"
 		},
 		Searchable = true,
+		Placeholder = "Search...",
 		Label = new DSCLabelConfig { Label = "Search", Position = LabelPosition.InlineTopRight }
 	};
 
@@ -251,7 +129,7 @@
 			"Item 3"
 		},
 		Disabled = true,
-		Label = new DSCLabelConfig { Label = "Disabled", Position = LabelPosition.InlineTop }
+		Label = new DSCLabelConfig { Label = "Disabled", Position = LabelPosition.InlineTopLeft }
 	};
 
 	private DSCInputConfig _minMaxSelect = new DSCInputConfig
@@ -268,6 +146,6 @@
 		Multiple = true,
 		Minimum = 1,
 		Maximum = 3,
-		Label = new DSCLabelConfig { Label = "Min/Max", Position = LabelPosition.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Min/Max", Position = LabelPosition.InlineTop }
 	};
 }
