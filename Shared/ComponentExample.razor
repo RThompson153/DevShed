@@ -174,14 +174,6 @@
 
 	private void toggleExpanded() => _expanded = !_expanded;
 
-	protected override void OnParametersSet()
-	{
-		if (Item.Timeout is not null && !Item.HasDelegate)
-			_exception = "! The timeout value will be ignored.";
-
-		base.OnParametersSet();
-	}
-
 	private void edit()
 	{
 		_editing = !_editing;

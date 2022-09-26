@@ -32,6 +32,39 @@
 	</Example>
 </ComponentExample>
 
+<ComponentExample Item="_disabledText">
+	<Header>
+		<h4>Disabled</h4>
+		<p>Setting the <span class="cmpt">Disabled</span> property to <span class="cmpt">true </span>in the configuration model disables the component.</p>
+	</Header>
+
+	<Example>
+		<DSCText Config="@_disabledText" OnInput="inputCallback" />
+	</Example>
+</ComponentExample>
+
+<ComponentExample Item="_minMaxText">
+	<Header>
+		<h4>Minimum / Maximum</h4>
+		<p>Setting the <span class="cmpt">Minimum/Maximum</span> properties limits the number of characters that can be entered. If no values are provided, the minimum number of selections is set to zero and the maximum is set to the maximum input component length by default.</p>
+	</Header>
+
+	<Example>
+		<DSCText Config="@_minMaxText" />
+	</Example>
+</ComponentExample>
+
+<ComponentExample Item="_ignoreText">
+	<Header>
+		<h4>Ignore Characters</h4>
+		<p>Providing the component with the <span class="cmpt">Ignore </span> parameter prevents the component from using the the characters. Providing the parameter with <span class="cmpt">IgnorePattern.Custom </span>requires a custom regex string to be provided to the <span class="cmpt">Pattern </span> parameter.</p>
+	</Header>
+
+	<Example>
+		<DSCText Config="@_ignoreText" Ignore="IgnorePattern.Alpha" />
+	</Example>
+</ComponentExample>
+
 @code {
 	private DSCInputConfig _basicText = new DSCInputConfig
 	{
@@ -44,6 +77,27 @@
 		Name = "Timeout Text",
 		Label = new DSCLabelConfig { Label = "Timeout Text", Position = LabelPosition.InlineTopLeft },
 		Timeout = 1000
+	};
+
+	private DSCInputConfig _disabledText = new DSCInputConfig
+	{
+		Name = "Disabled",
+		Label = new DSCLabelConfig { Label = "Disabled Text", Position = LabelPosition.InlineTopLeft },
+		Disabled = true
+	};
+
+	private DSCInputConfig _minMaxText = new DSCInputConfig
+	{
+		Name = "Min/Max",
+		Label = new DSCLabelConfig { Label = "Min/Max", Position = LabelPosition.InlineTopLeft },
+		Minimum = 1,
+		Maximum = 10
+	};
+
+	private DSCInputConfig _ignoreText = new DSCInputConfig
+	{
+		Name = "Ignore Text",
+		Label = new DSCLabelConfig { Label = "Ignore Text", Position = LabelPosition.InlineTopLeft }
 	};
 
 	private void inputCallback(string val){}
