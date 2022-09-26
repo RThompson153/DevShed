@@ -22,7 +22,7 @@
 	cursor: pointer;
 }
 
-.component-example-head i, .component-example i{
+.component-example-head i, .component-example .edit-icon{
 	margin-left: auto;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .markup{
-	height: 130px;
-	max-height: 130px;
+	height: 200px;
+	max-height: 200px;
 	overflow-y: auto;
 }
 
@@ -61,6 +61,12 @@
 	height: 100%;
 }
 
-.bleh-text{
-	color: rgb(255, 0, 0);
+.editable {
+	background-color: inherit;
+	border: none;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.editable:focus{
+	outline: none;
 }
