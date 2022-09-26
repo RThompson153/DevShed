@@ -60,3 +60,7 @@
 .markup .edit, .markup .edit textarea {
 	height: 100%;
 }
+
+.bleh-text{
+	color: rgb(255, 0, 0);
+}

@@ -1,5 +1,9 @@
 ﻿@using DSComponents.Input.Models
 @using System.Text.Json
+@using DevShed.Services
+@using System.ComponentModel
+@using System.Reflection
+
 <div class="row mt-3 cursor-pointer @((!_expanded) ? "border-bottom" : "")">
 	<div class="col-12 d-flex p-0 component-example-head" @onclick="toggleExpanded">
 		<div class="d-block">
@@ -18,7 +22,7 @@
 				@Example
 			</div>
 
-			<i class="oi oi-code my-auto cursor-pointer" @onclick="@(() => _section = "edit")"></i>
+			<i class="oi oi-code my-auto cursor-pointer" @onclick="edit"></i>
 		</div>
 
 		<div class="col-12 d-flex mt-3 py-1 border-top border-bottom">
@@ -30,16 +34,103 @@
 			@switch(_section)
 			{
 				case "config":
-					@Code
-					break;
-				case "edit":
-					<div class="col-6 edit">
-						<textarea class="col-12" @oninput="@((e) => onInput(e))">@_editedItem</textarea>
-						<button type="button" class="cmpt btn btn-secondary py-0" @onclick="saveItem">Save</button>
+					<div class="col-12">
+						<span class="key">private </span><span class="cmpt">DSCInputConfig </span> _select &#61; <span class="key">new </span><span class="cmpt">DSCInputConfig</span><br />
+						&#123; <br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Name &#61 <span class="param">"@Item.Name"</span>&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;SelectItems &#61 <span class="key">new </span><span class="cmpt">List</span>&lt;<span class="key">object</span>&gt;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(Item.SelectItems[0])"</span>&#44;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(Item.SelectItems[1])"</span>&#44;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(Item.SelectItems[2])"</span>&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Label &#61 <span class="key">new </span><span class="cmpt">DSCLabelConfig</span><br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label &#61; <span class="param">"@Item.Label.Label"</span>&#44;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position &#61; <span class="enum">LabelPosition</span>.InlineTopLeft<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&#125; <br />
+							&nbsp;&nbsp;&nbsp;&nbsp;TextColor &#61; 
+							@if(_editing)
+							{
+								<input type="text" value="@Item.TextColor" @onchange="@((e) => update("TextColor", e))" />
+							}
+							else
+							{
+								<span class="param">"@Item.TextColor"</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;BackgroundColor &#61; 
+							@if(_editing)
+							{
+								<input type="text" value="@Item.BackgroundColor" @onchange="@((e) => update("BackgroundColor", e))" />
+							}
+							else
+							{
+								<span class="param">"@Item.BackgroundColor"</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Disabled &#61; 
+							@if(_editing)
+							{
+								<input type="checkbox" @onchange="@((e) => update("Disabled", e))" checked="@Item.Disabled" />
+							}
+							else
+							{
+								<span class="param">@Item.Disabled</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Multiple &#61; 
+							@if(_editing)
+							{
+								<input type="checkbox" @onchange="@((e) => update("Multiple", e))" checked="@Item.Multiple" />
+							}
+							else
+							{
+								<span class="param">@Item.Multiple</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Searchable &#61; 
+							@if(_editing)
+							{
+								<input type="checkbox" @onchange="@((e) => update("Searchable", e))" checked="@Item.Searchable" />
+							}
+							else
+							{
+								<span class="param">@Item.Searchable</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Minimum &#61; 
+							@if(_editing)
+							{
+								<input type="number" value="@Item.Minimum" @onchange="@((e) => update("Minimum", e))" />
+							}
+							else
+							{
+								<span class="param">@Item.Minimum</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Maximum &#61; 
+							@if(_editing)
+							{
+								<input type="number" value="@Item.Maximum" @onchange="@((e) => update("Maximum", e))" />
+							}
+							else
+							{
+								<span class="param">@Item.Maximum</span>
+							}
+							&#44;<br />
+						&#125; <br />
 					</div>
 					break;
 				default:
-					@Markup
+					<div class="col-6">
+						&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
+						&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
+						&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
+					</div>
 					break;
 			}
 		</div>
@@ -47,58 +138,34 @@
 }
 
 @code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
 	[Parameter]
 	public RenderFragment Header { get; set; }
 	[Parameter]
 	public RenderFragment Example { get; set; }
 	[Parameter]
-	public RenderFragment Markup { get; set; }
-	[Parameter]
-	public RenderFragment Code { get; set; }
-	[Parameter]
 	public DSCInputConfig Item { get; set; }
-	[Parameter]
-	public EventCallback<DSCInputConfig> ItemChangeCallback { get; set; }
 
 	private string _section = "usage";
-	private bool _expanded;
-	private DSCInputConfig _item;
-	private string _editedItem;
+	private bool _expanded, _editing;
+	private PropertyInfo _property;
 
 	private void toggleExpanded() => _expanded = !_expanded;
 
-	protected override void OnParametersSet()
+	private void edit() => _editing = !_editing;
+
+	private void update(string prop, ChangeEventArgs? selected = null)
 	{
 
-		base.OnParametersSet();
-	}
+		_property = Item.GetType().GetProperty(prop);
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		if(firstRender)
-		{
-			_item = Item;
+		var converter = TypeDescriptor.GetConverter(_property.PropertyType);
 
-			_editedItem = JsonSerializer.Serialize(_item);
-		}
-		base.OnAfterRender(firstRender);
-	}
+		var val = converter.ConvertFromString(selected?.Value.ToString());
 
+		_property.SetValue(Item, val);
 
-	private void saveItem()
-	{
-		_item = JsonSerializer.Deserialize<DSCInputConfig>(_editedItem);
-
-		ItemChangeCallback.InvokeAsync(_item);
-	}
-
-	private void onInput(ChangeEventArgs e)
-	{
-		_editedItem = e.Value.ToString();
-	}
-
-	private void keyup(EventArgs e)
-	{
-		
 	}
 }

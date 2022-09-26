@@ -6,35 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Shared\StandardSelect.razor" />
-    <Content Remove="Shared\StandardSelectComponent.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.3" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DSComponents\DSComponents\DSComponents.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Shared\StandardSelectComponent.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Shared\StandardSelect.razor" />
-    <_ContentIncludedByDefault Remove="Shared\StandardSelectComponent.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Shared\StandardSelect.razor" />
-    <None Include="Shared\StandardSelectComponent.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Shared\StandardSelect.razor" />
   </ItemGroup>
 
 </Project>
