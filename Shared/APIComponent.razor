@@ -9,117 +9,7 @@
 			}
 		</thead>
 		<tbody>
-			<tr><td colspan="5"><h5>DSCSelect</h5></td></tr>
-			<tr>
-				<td>Config</td>
-				<td>Required - <span class="cmpt">DSCInputConfig</span></td>
-				<td>N/A</td>
-				<td>One-Way</td>
-				<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
-			</tr>
-			<tr>
-				<td>Expanded</td>
-				<td>Required - bool</td>
-				<td>N/A</td>
-				<td>Two-Way</td>
-				<td>Component expanded state.</td>
-			</tr>
-			<tr><td colspan="5"><h5>DSCSelectItem</h5></td></tr>
-			<tr>
-				<td>Value</td>
-				<td>Required - object</td>
-				<td>N/A</td>
-				<td>One-Way</td>
-				<td>Value of the select item.</td>
-			</tr>
-			<tr>
-				<td>SelectCallback</td>
-				<td>Optional - EventCallback</td>
-				<td>null</td>
-				<td>N/A</td>
-				<td>Callback method to fire when selecting an item.</td>
-			</tr>
-			<tr><td colspan="5"><h5>DSCInputConfig</h5></td></tr>
-			<tr>
-				<td>Name</td>
-				<td>Optional - string</td>
-				<td colspan="2">null</td>
-				<td>Name of the component.</td>
-			</tr>
-			<tr>
-				<td>Label</td>
-				<td>Optional - <span class="cmpt">DSCLabelConfig</span></td>
-				<td colspan="2">null</td>
-				<td>Label for the component.</td>
-			</tr>
-			<tr>
-				<td>Minimum</td>
-				<td>Optional - decimal</td>
-				<td colspan="2">0</td>
-				<td>The minimum number of items that can be selected.</td>
-			</tr>
-			<tr>
-				<td>Maximum</td>
-				<td>Optional - decimal</td>
-				<td colspan="2">SelectItems count</td>
-				<td>The maximum number of items that can be selected.</td>
-			</tr>
-			<tr>
-				<td>Multiple</td>
-				<td>Optional - bool</td>
-				<td colspan="2">false</td>
-				<td>If true, multiple items can be selected.</td>
-			</tr>
-			<tr>
-				<td>Searchable</td>
-				<td>Optional - bool</td>
-				<td colspan="2">false</td>
-				<td>If true, the items can be searched and filtered.</td>
-			</tr>
-			<tr>
-				<td>Disabled</td>
-				<td>Optional - bool</td>
-				<td colspan="2">false</td>
-				<td>If true, the component is disabled.</td>
-			</tr>
-			<tr>
-				<td>TextColor</td>
-				<td>Optional - string</td>
-				<td colspan="2">"dsc-white"</td>
-				<td>CSS class for the component text color. Bootstrap classes are supported.</td>
-			</tr>
-			<tr>
-				<td>BackgroundColor</td>
-				<td>Optional - string</td>
-				<td colspan="2">"dsc-bg-white"</td>
-				<td>CSS class for the component background color. Bootstrap classes are supported.</td>
-			</tr>
-			<tr>
-				<td>SelectItems</td>
-				<td>Required - IEnumerable&lt;object&gt;</td>
-				<td colspan="2">N/A</td>
-				<td>The collection of selectable items.</td>
-			</tr>
-			<tr><td colspan="5"><h5>DSCLabelConfig</h5></td></tr>
-			<tr>
-				<td>Label</td>
-				<td>Optional - string</td>
-				<td colspan="2">null</td>
-				<td>The label name for the component.</td>
-			</tr>
-			<tr>
-				<td>LabelPosition</td>
-				<td>Optional - <span class="cmpt">LabelPosition</span></td>
-				<td colspan="2">LabelPosition.TopLeft</td>
-				<td>The position of the component's label.</td>
-			</tr>
-			<tr><td colspan="5"><h5>DSCService</h5></td></tr>
-			<tr>
-				<td>CloseDropdowns</td>
-				<td>Optional - Method</td>
-				<td colspan="2">N/A</td>
-				<td>Closes all open dropdowns. Place as a click event on the root element of your page.</td>
-			</tr>
+			@ChildContent
 		</tbody>
 	</table>
 </div>
@@ -127,4 +17,6 @@
 @code{
 	[Parameter]
 	public IEnumerable<string> Header { get; set; }
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
 }

@@ -128,29 +128,29 @@
 							{
 								<span class="param">@Item.Maximum</span>
 							}
-							&#44;<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;Timeout &#61; 
-							@if(_editing)
+							
+							@if(Item.Timeout != null)
 							{
-								<input type="number" class="editable" value="@Item.Timeout" @onchange="@((e) => update("Timeout", e))" />
-							}
-							else
-							{
-								<span class="param">@Item.Timeout</span>
+								<span>
+									&#44;<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Timeout &#61; 
+									@if(_editing)
+									{
+										<input type="number" class="editable" value="@Item.Timeout" @onchange="@((e) => update("Timeout", e))" />
+									}
+									else
+									{
+										<span class="param">@Item.Timeout</span>
+									}
+								</span>
+								
 							}
 							<br />
-						&#125; <br />
+						&#125;
 					</div>
 					break;
 				default:
-					<div class="col-6">
-						&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
-						&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
-						&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
-					</div>
+					@Usage
 					break;
 			}
 		</div>
@@ -165,6 +165,8 @@
 	public RenderFragment Header { get; set; }
 	[Parameter]
 	public RenderFragment Example { get; set; }
+	[Parameter]
+	public RenderFragment Usage { get; set; }
 	[Parameter]
 	public DSCInputConfig Item { get; set; }
 
