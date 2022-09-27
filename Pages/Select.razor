@@ -4,6 +4,7 @@
 @using DSComponents.Input
 @using DSComponents.Input.Enums
 @using DSComponents.Input.Models
+@using DevShed.Models
 
 <h3>DSC Select</h3>
 
@@ -87,9 +88,11 @@
 	</Example>
 </ComponentExample>
 
-<APIComponent />
+<APIComponent Header="@_apiHeader" />
 
 @code {
+	private IEnumerable<string> _apiHeader = new List<string> { "Parameter", "Type", "Default Value", "Binding", "Description" };
+
 	private DSCInputConfig _basicSelect = new DSCInputConfig
 	{
 		Name = "Basic",
@@ -148,4 +151,36 @@
 		Maximum = 3,
 		Label = new DSCLabelConfig { Label = "Min/Max", Position = LabelPosition.InlineTop }
 	};
+
+	protected override Task OnAfterRenderAsync(bool firstRender)
+	{
+		if(firstRender)
+		{
+			var properties = _basicSelect.GetType().GetProperties();
+
+			var rows = new List<TableRow>();
+
+			foreach(var prop in properties)
+			{
+				var attr = prop.GetCustomAttributes(true).FirstOrDefault() as DSCInputAttribute;
+
+				var row = new TableRow
+				{
+					Property = prop.Name,
+					Type = $"{((attr?.Required == true) ? "Required" : "Optional")} - {attr?.Type}",
+					Description = attr?.Description ?? "",
+					DefaultValue = prop.GetValue(_basicSelect)?.ToString() ?? "N/A"
+				};
+
+				rows.Add(row);
+			}
+
+			var meh = rows;
+			@*
+			var heh = meh.Select(x => x.Name).ToList();
+
+			var hah = meh.Select(x => x.PropertyType.Name).ToList();*@
+		}
+		return base.OnAfterRenderAsync(firstRender);
+	}
 }

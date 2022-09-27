@@ -3,11 +3,10 @@
 	
 	<table class="table table-responsive">
 		<thead>
-			<th>Parameter</th>
-			<th>Type</th>
-			<th>Default Value</th>
-			<th>Binding</th>
-			<th>Description</th>
+			@foreach(var th in Header)
+			{
+				<th>@th</th>
+			}
 		</thead>
 		<tbody>
 			<tr><td colspan="5"><h5>DSCSelect</h5></td></tr>
@@ -124,3 +123,8 @@
 		</tbody>
 	</table>
 </div>
+
+@code{
+	[Parameter]
+	public IEnumerable<string> Header { get; set; }
+}
