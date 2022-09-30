@@ -4,11 +4,15 @@
 @using DSComponents.Input
 @using DSComponents.Input.Enums
 @using DSComponents.Input.Models
+@using DevShed.Models
 @using static DSComponents.Input.Models.DSCInputConfig
 
-<h3>DSC Text</h3>
+<div class="row">
+	<h3 class="p-0">DSC Text</h3>
 
-<p>The DSCText component is a custom input text box.  It is fully customizable and supports numerous attributes and variations such as <span class="cmpt">timeout</span>, <span class="cmpt">minimum</span> and <span class="cmpt">maximum</span> selections, <span class="cmpt">text </span> and <span class="cmpt">background</span> colors, and <span class="cmpt">disabled</span>.  The component also supports custom CSS and CSS Overrides, as well as provides event callbacks.</p>
+	<p class="p-0">The DSCText component is a custom input text box.  It is fully customizable and supports numerous attributes and variations such as <span class="cmpt">timeout</span>, <span class="cmpt">minimum</span> and <span class="cmpt">maximum</span> selections, <span class="cmpt">text </span> and <span class="cmpt">background</span> colors, and <span class="cmpt">disabled</span>.  The component also supports custom CSS and CSS Overrides, as well as provides event callbacks.</p>
+</div>
+
 
 <ComponentExample Item="_basicText">
 	<Header>
@@ -19,6 +23,12 @@
 	<Example>
 		<DSCText Config="@_basicText" />
 	</Example>
+
+	<Usage>
+		<div class="col-6">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;;&gt; <br />
+		</div>
+	</Usage>
 </ComponentExample>
 
 <ComponentExample Item="_timeoutText">
@@ -30,6 +40,12 @@
 	<Example>
 		<DSCText Config="@_timeoutText" OnInput="inputCallback" />
 	</Example>
+
+	<Usage>
+		<div class="col-6">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">OnInput</span>&#61;&#34;inputCallback&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
 </ComponentExample>
 
 <ComponentExample Item="_disabledText">
@@ -39,8 +55,14 @@
 	</Header>
 
 	<Example>
-		<DSCText Config="@_disabledText" OnInput="inputCallback" />
+		<DSCText Config="@_disabledText" />
 	</Example>
+
+	<Usage>
+		<div class="col-6">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;;&gt; <br />
+		</div>
+	</Usage>
 </ComponentExample>
 
 <ComponentExample Item="_minMaxText">
@@ -52,6 +74,12 @@
 	<Example>
 		<DSCText Config="@_minMaxText" />
 	</Example>
+
+	<Usage>
+		<div class="col-6">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;;&gt; <br />
+		</div>
+	</Usage>
 </ComponentExample>
 
 <ComponentExample Item="_ignoreText">
@@ -61,11 +89,85 @@
 	</Header>
 
 	<Example>
-		<DSCText Config="@_ignoreText" Ignore="IgnorePattern.Alpha" />
+		<DSCText Config="@_ignoreText" Ignore="IgnorePattern.Special" OnInput="inputCallback" />
 	</Example>
+
+	<Usage>
+		<div class="col-6">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">Ignore</span>&#61;&#34;IgnorePattern.Special&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
 </ComponentExample>
 
+<APIComponent Header="_apiHeader">
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCText</h5></td></tr>
+	<tr>
+		<td>Config</td>
+		<td>Required - <span class="cmpt">DSCInputConfig</span></td>
+		<td>N/A</td>
+		<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
+	</tr>
+	<tr>
+		<td>HideLabel</td>
+		<td>Optional - bool</td>
+		<td>False</td>
+		<td>Parameter to determine whether the label is shown or not.</td>
+	</tr>
+	<tr>
+		<td>Ignore</td>
+		<td>Optional - IgnorePattern</td>
+		<td>N/A</td>
+		<td>Character enum the component should not allow.</td>
+	</tr>
+	<tr>
+		<td>Pattern</td>
+		<td>Optional - Regex Pattern</td>
+		<td>N/A</td>
+		<td>Regex pattern the component should not allow. Is required if the Ignore Pattern is set to <span class="cmpt">IgnorePattern.Custom</span>.</td>
+	</tr>
+	<tr>
+		<td>OnInput</td>
+		<td>Optional - EventCallback</td>
+		<td>N/A</td>
+		<td>Event callback that fires on input. Is required if a timeout value is set.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCInputConfig</h5></td></tr>
+	@foreach(var row in _apiRows)
+	{
+		<tr>
+			<td>@row.Property</td>
+			<td>@row.Type</td>
+			<td>@row.DefaultValue</td>
+			<td>@row.Description</td>
+		</tr>
+	}
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCLabelConfig</h5></td></tr>
+	<tr>
+		<td>Label</td>
+		<td>Optional - string</td>
+		<td>null</td>
+		<td>The label name for the component.</td>
+	</tr>
+	<tr>
+		<td>LabelPosition</td>
+		<td>Optional - <span class="cmpt">LabelPosition</span></td>
+		<td>null</td>
+		<td>The position of the component's label.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCService</h5></td></tr>
+	<tr>
+		<td>IDSCService</td>
+		<td>Required</td>
+		<td>N/A</td>
+		<td>Injectable service used to manage component interactions.</td>
+	</tr>
+</APIComponent>
+
 @code {
+	private IEnumerable<string> _apiHeader = new List<string> { "Parameter", "Type", "Default Value", "Description" };
+	private List<TableRow> _apiRows;
+	private DSCInputConfig _apiModel;
+
 	private DSCInputConfig _basicText = new DSCInputConfig
 	{
 		Name = "Basic Text",
@@ -99,6 +201,33 @@
 		Name = "Ignore Text",
 		Label = new DSCLabelConfig { Label = "Ignore Text", Position = LabelPosition.InlineTopLeft }
 	};
+
+	protected override Task OnInitializedAsync()
+	{
+		_apiModel = new DSCInputConfig();
+		var properties = _apiModel.GetType().GetProperties();
+
+		_apiRows = new List<TableRow>();
+
+		foreach(var prop in properties)
+		{
+			var attr = prop.GetCustomAttributes(true).FirstOrDefault() as DSCInputAttribute;
+
+			if (attr is null)
+				continue;
+
+			var row = new TableRow
+			{
+				Property = prop.Name,
+				Type = $"{((attr?.Required == true) ? "Required" : "Optional")} - {attr?.Type}",
+				Description = attr?.Description ?? "",
+				DefaultValue = prop.GetValue(_apiModel)?.ToString() ?? "null"
+			};
+
+			_apiRows.Add(row);
+		}
+		return base.OnInitializedAsync();
+	}
 
 	private void inputCallback(string val){}
 }
