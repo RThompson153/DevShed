@@ -5,7 +5,8 @@
 @using DSComponents.Input.Enums
 @using DSComponents.Input.Models
 @using DevShed.Models
-@using static DSComponents.Input.Models.DSCInputConfig
+@using DevShed.Services
+@using static DSComponents.Input.Models.DSCConfig
 
 <div class="row">
 	<h3 class="p-0">DSC Text</h3>
@@ -22,6 +23,8 @@
 
 	<Example>
 		<DSCText Config="@_basicText" />
+
+		<DSCNumber T=decimal Config="@_basicText" />
 	</Example>
 
 	<Usage>
@@ -164,31 +167,33 @@
 </APIComponent>
 
 @code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
 	private IEnumerable<string> _apiHeader = new List<string> { "Parameter", "Type", "Default Value", "Description" };
 	private List<TableRow> _apiRows;
-	private DSCInputConfig _apiModel;
 
-	private DSCInputConfig _basicText = new DSCInputConfig
+	private DSCConfig _basicText = new DSCConfig
 	{
 		Name = "Basic Text",
 		Label = new DSCLabelConfig { Label = "Basic Text", Position = LabelPosition.InlineTopLeft }
 	};
 
-	private DSCInputConfig _timeoutText = new DSCInputConfig
+	private DSCConfig _timeoutText = new DSCConfig
 	{
 		Name = "Timeout Text",
 		Label = new DSCLabelConfig { Label = "Timeout Text", Position = LabelPosition.InlineTopLeft },
 		Timeout = 1000
 	};
 
-	private DSCInputConfig _disabledText = new DSCInputConfig
+	private DSCConfig _disabledText = new DSCConfig
 	{
 		Name = "Disabled",
 		Label = new DSCLabelConfig { Label = "Disabled Text", Position = LabelPosition.InlineTopLeft },
 		Disabled = true
 	};
 
-	private DSCInputConfig _minMaxText = new DSCInputConfig
+	private DSCConfig _minMaxText = new DSCConfig
 	{
 		Name = "Min/Max",
 		Label = new DSCLabelConfig { Label = "Min/Max", Position = LabelPosition.InlineTopLeft },
@@ -196,7 +201,7 @@
 		Maximum = 10
 	};
 
-	private DSCInputConfig _ignoreText = new DSCInputConfig
+	private DSCConfig _ignoreText = new DSCConfig
 	{
 		Name = "Ignore Text",
 		Label = new DSCLabelConfig { Label = "Ignore Text", Position = LabelPosition.InlineTopLeft }
@@ -204,28 +209,8 @@
 
 	protected override Task OnInitializedAsync()
 	{
-		_apiModel = new DSCInputConfig();
-		var properties = _apiModel.GetType().GetProperties();
+		_apiRows = StateContainer.BuildAPITable<DSCConfig>();
 
-		_apiRows = new List<TableRow>();
-
-		foreach(var prop in properties)
-		{
-			var attr = prop.GetCustomAttributes(true).FirstOrDefault() as DSCInputAttribute;
-
-			if (attr is null)
-				continue;
-
-			var row = new TableRow
-			{
-				Property = prop.Name,
-				Type = $"{((attr?.Required == true) ? "Required" : "Optional")} - {attr?.Type}",
-				Description = attr?.Description ?? "",
-				DefaultValue = prop.GetValue(_apiModel)?.ToString() ?? "null"
-			};
-
-			_apiRows.Add(row);
-		}
 		return base.OnInitializedAsync();
 	}
 

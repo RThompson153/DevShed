@@ -5,6 +5,7 @@
 @using DSComponents.Input.Enums
 @using DSComponents.Input.Models
 @using DevShed.Models
+@using DevShed.Services
 
 <div class="row">
 	<h3 class="p-0">DSC Select</h3>
@@ -212,18 +213,20 @@
 </APIComponent>
 
 @code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
 	private IEnumerable<string> _apiHeader = new List<string> { "Parameter", "Type", "Default Value", "Description" };
 	private List<TableRow> _apiRows;
-	private DSCInputConfig _apiModel;
 
-	private DSCInputConfig _basicSelect = new DSCInputConfig
+	private DSCConfig _basicSelect = new DSCConfig
 	{
 		Name = "Basic",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
 		Label = new DSCLabelConfig {Label = "Basic Select", Position = LabelPosition.InlineTopLeft }
 	};
 
-	private DSCInputConfig _multipleSelect = new DSCInputConfig
+	private DSCConfig _multipleSelect = new DSCConfig
 	{
 		Name = "Multiple",
 		SelectItems = new List<object> { "Item 1", "Item 2", "Item 3" },
@@ -231,7 +234,7 @@
 		Label = new DSCLabelConfig { Label = "Multiple Select", Position = LabelPosition.InlineTop }
 	};
 
-	private DSCInputConfig _seachableSelect = new DSCInputConfig
+	private DSCConfig _seachableSelect = new DSCConfig
 	{
 		Name = "Search",
 		SelectItems = new List<object>
@@ -245,7 +248,7 @@
 		Label = new DSCLabelConfig { Label = "Search", Position = LabelPosition.InlineTopRight }
 	};
 
-	private DSCInputConfig _disabledSelect = new DSCInputConfig
+	private DSCConfig _disabledSelect = new DSCConfig
 	{
 		Name = "Disabled",
 		SelectItems = new List<object>
@@ -258,7 +261,7 @@
 		Label = new DSCLabelConfig { Label = "Disabled", Position = LabelPosition.InlineTopLeft }
 	};
 
-	private DSCInputConfig _minMaxSelect = new DSCInputConfig
+	private DSCConfig _minMaxSelect = new DSCConfig
 	{
 		Name = "Min/Max",
 		SelectItems = new List<object>
@@ -277,28 +280,8 @@
 
 	protected override Task OnInitializedAsync()
 	{
-		_apiModel = new DSCInputConfig();
-		var properties = _apiModel.GetType().GetProperties();
+		_apiRows = StateContainer.BuildAPITable<DSCConfig>();
 
-		_apiRows = new List<TableRow>();
-
-		foreach(var prop in properties)
-		{
-			var attr = prop.GetCustomAttributes(true).FirstOrDefault() as DSCInputAttribute;
-
-			if (attr is null)
-				continue;
-
-			var row = new TableRow
-			{
-				Property = prop.Name,
-				Type = $"{((attr?.Required == true) ? "Required" : "Optional")} - {attr?.Type}",
-				Description = attr?.Description ?? "",
-				DefaultValue = prop.GetValue(_apiModel)?.ToString() ?? "null"
-			};
-
-			_apiRows.Add(row);
-		}
 		return base.OnInitializedAsync();
 	}
 }
