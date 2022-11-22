@@ -2,102 +2,45 @@
 @page "/text"
 
 @using DSComponents.Input
-@using DSComponents.Input.Enums
+@using DSComponents.Enums
 @using DSComponents.Input.Models
 @using DevShed.Models
 @using DevShed.Services
-@using static DSComponents.Input.Models.DSCConfig
 
 <div class="row">
 	<h3 class="p-0">DSC Text</h3>
 
-	<p class="p-0">The DSCText component is a custom input text box.  It is fully customizable and supports numerous attributes and variations such as <span class="cmpt">timeout</span>, <span class="cmpt">minimum</span> and <span class="cmpt">maximum</span> selections, <span class="cmpt">text </span> and <span class="cmpt">background</span> colors, and <span class="cmpt">disabled</span>.  The component also supports custom CSS and CSS Overrides, as well as provides event callbacks.</p>
+	<p class="p-0">The DSCText component is a custom input text box. To change the  configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
 </div>
-
 
 <ComponentExample Item="_basicText">
 	<Header>
-		<h4>Basic Text</h4>
-		<p>The basic text input.</p>
+		<h4>Text</h4>
 	</Header>
 
 	<Example>
 		<DSCText Config="@_basicText" />
-
-		<DSCNumber T=decimal Config="@_basicText" />
 	</Example>
 
 	<Usage>
-		<div class="col-6">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;;&gt; <br />
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;&gt; <br />
 		</div>
 	</Usage>
 </ComponentExample>
 
-<ComponentExample Item="_timeoutText">
+<ComponentExample Item="_basicText">
 	<Header>
-		<h4>Timeout Text</h4>
-		<p>Adding a timeout value will give the component a delay before firing a callback method.  If a timeout value is provided, the <span class="cmpt">OnInput</span> parameter must be set as well.</p>
+		<h4>@_basicText.Name hidden label</h4>
 	</Header>
 
 	<Example>
-		<DSCText Config="@_timeoutText" OnInput="inputCallback" />
+		<DSCText Config="@_basicText" HideLabel="true" />
 	</Example>
 
 	<Usage>
-		<div class="col-6">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">OnInput</span>&#61;&#34;inputCallback&#34; &#47;&gt; <br />
-		</div>
-	</Usage>
-</ComponentExample>
-
-<ComponentExample Item="_disabledText">
-	<Header>
-		<h4>Disabled</h4>
-		<p>Setting the <span class="cmpt">Disabled</span> property to <span class="cmpt">true </span>in the configuration model disables the component.</p>
-	</Header>
-
-	<Example>
-		<DSCText Config="@_disabledText" />
-	</Example>
-
-	<Usage>
-		<div class="col-6">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;;&gt; <br />
-		</div>
-	</Usage>
-</ComponentExample>
-
-<ComponentExample Item="_minMaxText">
-	<Header>
-		<h4>Minimum / Maximum</h4>
-		<p>Setting the <span class="cmpt">Minimum/Maximum</span> properties limits the number of characters that can be entered. If no values are provided, the minimum number of selections is set to zero and the maximum is set to the maximum input component length by default.</p>
-	</Header>
-
-	<Example>
-		<DSCText Config="@_minMaxText" />
-	</Example>
-
-	<Usage>
-		<div class="col-6">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;;&gt; <br />
-		</div>
-	</Usage>
-</ComponentExample>
-
-<ComponentExample Item="_ignoreText">
-	<Header>
-		<h4>Ignore Characters</h4>
-		<p>Providing the component with the <span class="cmpt">Ignore </span> parameter prevents the component from using the the characters. Providing the parameter with <span class="cmpt">IgnorePattern.Custom </span>requires a custom regex string to be provided to the <span class="cmpt">Pattern </span> parameter.</p>
-	</Header>
-
-	<Example>
-		<DSCText Config="@_ignoreText" Ignore="IgnorePattern.Special" OnInput="inputCallback" />
-	</Example>
-
-	<Usage>
-		<div class="col-6">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">Ignore</span>&#61;&#34;IgnorePattern.Special&#34; &#47;&gt; <br />
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
 		</div>
 	</Usage>
 </ComponentExample>
