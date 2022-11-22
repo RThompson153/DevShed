@@ -223,7 +223,7 @@
 	{
 		Name = "Basic",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
-		Label = new DSCLabelConfig {Label = "Basic Select", Position = LabelPosition.InlineTopLeft }
+		Label = new DSCLabelConfig {Label = "Basic Select", Position = Position.InlineTopLeft }
 	};
 
 	private DSCConfig _multipleSelect = new DSCConfig
@@ -231,7 +231,7 @@
 		Name = "Multiple",
 		SelectItems = new List<object> { "Item 1", "Item 2", "Item 3" },
 		Multiple = true,
-		Label = new DSCLabelConfig { Label = "Multiple Select", Position = LabelPosition.InlineTop }
+		Label = new DSCLabelConfig { Label = "Multiple Select", Position = Position.InlineTop }
 	};
 
 	private DSCConfig _seachableSelect = new DSCConfig
@@ -245,7 +245,7 @@
 		},
 		Searchable = true,
 		Placeholder = "Search...",
-		Label = new DSCLabelConfig { Label = "Search", Position = LabelPosition.InlineTopRight }
+		Label = new DSCLabelConfig { Label = "Search", Position = Position.InlineTopRight }
 	};
 
 	private DSCConfig _disabledSelect = new DSCConfig
@@ -258,7 +258,7 @@
 			"Item 3"
 		},
 		Disabled = true,
-		Label = new DSCLabelConfig { Label = "Disabled", Position = LabelPosition.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Disabled", Position = Position.InlineTopLeft }
 	};
 
 	private DSCConfig _minMaxSelect = new DSCConfig
@@ -275,7 +275,7 @@
 		Multiple = true,
 		Minimum = 1,
 		Maximum = 3,
-		Label = new DSCLabelConfig { Label = "Min/Max", Position = LabelPosition.InlineTop }
+		Label = new DSCLabelConfig { Label = "Min/Max", Position = Position.InlineTop }
 	};
 
 	protected override Task OnInitializedAsync()

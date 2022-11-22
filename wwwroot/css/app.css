@@ -74,3 +74,7 @@
 .component-example-exception{
 	color: rgb(155, 0, 0);
 }
+
+.disabled {
+	background-color: rgb(150, 150, 150);
+}
