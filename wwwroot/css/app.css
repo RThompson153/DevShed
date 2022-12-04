@@ -1,4 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('dscoverrides.css');
 @import url('markup.css');
 
 .side-nav {
@@ -77,4 +78,12 @@
 
 .disabled {
 	background-color: rgb(150, 150, 150);
+}
+
+.icon{
+	width: 3rem;
+	background-image: url('../images/icon.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
 }

@@ -10,12 +10,12 @@
 <div class="row">
 	<h3 class="p-0">DSC Text</h3>
 
-	<p class="p-0">The DSCText component is a custom input text box. To change the  configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
+	<p class="p-0">The DSCText component is a custom input text box. To change the configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
 </div>
 
 <ComponentExample Item="_basicText">
 	<Header>
-		<h4>Text</h4>
+		<h4>!_basicText.Name</h4>
 	</Header>
 
 	<Example>
@@ -29,18 +29,33 @@
 	</Usage>
 </ComponentExample>
 
-<ComponentExample Item="_basicText">
+<ComponentExample Item="_hideLabelText">
 	<Header>
-		<h4>@_basicText.Name hidden label</h4>
+		<h4>@_hideLabelText.Name w/ hidden label</h4>
 	</Header>
 
 	<Example>
-		<DSCText Config="@_basicText" HideLabel="true" />
+		<DSCText Config="@_hideLabelText" HideLabel="true" />
 	</Example>
 
 	<Usage>
 		<div class="col-12">
 			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+<ComponentExample Item="_ignoreText">
+	<Header>
+		<h4>@_ignoreText.Name w/ pattern ignore</h4>
+	</Header>
+	<Example>
+		<DSCText Config="@_ignoreText" Ignore="IgnorePattern.Numeric" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">Ignore</span>&#61;&#34;<span class="bind">IgnorePattern.Numeric</span>&#34; &#47;&gt; <br />
 		</div>
 	</Usage>
 </ComponentExample>
@@ -118,36 +133,20 @@
 
 	private DSCConfig _basicText = new DSCConfig
 	{
-		Name = "Basic Text",
-		Label = new DSCLabelConfig { Label = "Basic Text", Position = Position.InlineTopLeft }
+		Name = "Standard Text",
+		Label = new DSCLabelConfig { Label = "Standard Text", Position = Position.InlineTopLeft }
 	};
 
-	private DSCConfig _timeoutText = new DSCConfig
+	private DSCConfig _hideLabelText = new DSCConfig
 	{
-		Name = "Timeout Text",
-		Label = new DSCLabelConfig { Label = "Timeout Text", Position = Position.InlineTopLeft },
-		Timeout = 1000
-	};
-
-	private DSCConfig _disabledText = new DSCConfig
-	{
-		Name = "Disabled",
-		Label = new DSCLabelConfig { Label = "Disabled Text", Position = Position.InlineTopLeft },
-		Disabled = true
-	};
-
-	private DSCConfig _minMaxText = new DSCConfig
-	{
-		Name = "Min/Max",
-		Label = new DSCLabelConfig { Label = "Min/Max", Position = Position.InlineTopLeft },
-		Minimum = 1,
-		Maximum = 10
+		Name = "Text",
+		Label = new DSCLabelConfig { Label = "Text", Position = Position.InlineTopLeft }
 	};
 
 	private DSCConfig _ignoreText = new DSCConfig
 	{
-		Name = "Ignore Text",
-		Label = new DSCLabelConfig { Label = "Ignore Text", Position = Position.InlineTopLeft }
+		Name = "Text",
+		Label = new DSCLabelConfig { Label = "Pattern Ignore Text", Position = Position.InlineTopLeft }
 	};
 
 	protected override Task OnInitializedAsync()

@@ -39,18 +39,23 @@
 	</Usage>
 </ComponentExample>
 
-@*<ComponentExample Item="_basicSelect">
+<ComponentExample Item="@_hideLabelSelect">
 	<Header>
-		<h4>@_basicSelect.Name hidden label</h4>
+		<h4>@_hideLabelSelect.Name w/ hidden label</h4>
 	</Header>
 
 	<Example>
-		<DSCSelect Config="@_basicSelect" HideLabel="true" />
+		<DSCSelect Config="@_hideLabelSelect" HideLabel="true" @bind-Expanded="@_hideLabelSelect.Expanded">
+			@foreach(var item in _hideLabelSelect.SelectItems)
+			{
+				<DSCSelectItem Value="@item"  />
+			}
+		</DSCSelect>
 	</Example>
 
 	<Usage>
 		<div class="col-6">
-			&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
+			&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
@@ -58,7 +63,7 @@
 			&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
 		</div>
 	</Usage>
-</ComponentExample>*@
+</ComponentExample>
 
 <APIComponent Header="@_apiHeader">
 	<tr><td colspan="@_apiHeader.Count()"><h5>DSCSelect</h5></td></tr>
@@ -135,61 +140,16 @@
 
 	private DSCConfig _basicSelect = new DSCConfig
 	{
+		Name = "Standard Select",
+		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
+		Label = new DSCLabelConfig {Label = "Standard Select", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _hideLabelSelect = new DSCConfig
+	{
 		Name = "Select",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
-		Label = new DSCLabelConfig {Label = "Basic Select", Position = Position.InlineTopLeft }
-	};
-
-	private DSCConfig _multipleSelect = new DSCConfig
-	{
-		Name = "Multiple",
-		SelectItems = new List<object> { "Item 1", "Item 2", "Item 3" },
-		Multiple = true,
-		Label = new DSCLabelConfig { Label = "Multiple Select", Position = Position.InlineTop }
-	};
-
-	private DSCConfig _seachableSelect = new DSCConfig
-	{
-		Name = "Search",
-		SelectItems = new List<object>
-		{
-			"Item 1",
-			"Item 2",
-			"Item 3"
-		},
-		Searchable = true,
-		Placeholder = "Search...",
-		Label = new DSCLabelConfig { Label = "Search", Position = Position.InlineTopRight }
-	};
-
-	private DSCConfig _disabledSelect = new DSCConfig
-	{
-		Name = "Disabled",
-		SelectItems = new List<object>
-		{
-			"Item 1",
-			"Item 2",
-			"Item 3"
-		},
-		Disabled = true,
-		Label = new DSCLabelConfig { Label = "Disabled", Position = Position.InlineTopLeft }
-	};
-
-	private DSCConfig _minMaxSelect = new DSCConfig
-	{
-		Name = "Min/Max",
-		SelectItems = new List<object>
-		{
-			"Item 1",
-			"Item 2",
-			"Item 3",
-			"Item 4",
-			"Item 5"
-		},
-		Multiple = true,
-		Minimum = 1,
-		Maximum = 3,
-		Label = new DSCLabelConfig { Label = "Min/Max", Position = Position.InlineTop }
+		Label = new DSCLabelConfig {Label = "Select", Position = Position.InlineTopLeft }
 	};
 
 	protected override Task OnInitializedAsync()

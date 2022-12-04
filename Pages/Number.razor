@@ -27,14 +27,14 @@
 	</Usage>
 </ComponentExample>
 
-<ComponentExample Item="_basicNumber">
+<ComponentExample Item="_noSpinNumber">
 	<Header>
-		<h4>@_basicNumber.Name no spinner</h4>
+		<h4>@_noSpinNumber.Name w/ no spinner</h4>
 		<p>The basic number input with hidden spin buttons.</p>
 	</Header>
 
 	<Example>
-		<DSCNumber Config="@_basicNumber" HideSpin="true" />
+		<DSCNumber Config="@_noSpinNumber" HideSpin="true" />
 	</Example>
 
 	<Usage>
@@ -44,14 +44,14 @@
 	</Usage>
 </ComponentExample>
 
-<ComponentExample Item="_basicNumber">
+<ComponentExample Item="_hiddenLabelNumber">
 	<Header>
-		<h4>@_basicNumber.Name hidden label</h4>
+		<h4>@_hiddenLabelNumber.Name w/ hidden label</h4>
 		<p>Number input with hidden label.</p>
 	</Header>
 
 	<Example>
-		<DSCNumber Config="@_basicNumber" HideSpin="true" />
+		<DSCNumber Config="@_hiddenLabelNumber" HideLabel="true" />
 	</Example>
 
 	<Usage>
@@ -63,6 +63,18 @@
 
 @code {
 	private DSCConfig _basicNumber = new DSCConfig
+	{
+		Name = "Standard Number",
+		Label = new DSCLabelConfig { Label = "Standard Number", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _noSpinNumber = new DSCConfig
+	{
+		Name = "Number",
+		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _hiddenLabelNumber = new DSCConfig
 	{
 		Name = "Number",
 		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopLeft }

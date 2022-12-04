@@ -1,3 +1,19 @@
-﻿<NavLink class="nav-link" href="toolshed" Match="NavLinkMatch.All">
-    <span>Tool Shed</span>
-</NavLink>
+﻿@inject NavigationManager NavManager
+
+<div class="d-flex justify-content-between shadow">
+    <div class="icon cursor-pointer" @onclick="@(() => navigate("/"))"></div>
+
+    <div class="nav-links d-flex">
+        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+            <span>About</span>
+        </NavLink>
+
+        <NavLink class="nav-link" href="toolshed" Match="NavLinkMatch.All">
+            <span>Tool Shed</span>
+        </NavLink>
+    </div>
+</div>
+
+@code{
+    private void navigate(string route) => NavManager.NavigateTo(route);
+}

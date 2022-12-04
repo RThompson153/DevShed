@@ -59,26 +59,6 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label &#61; <span class="param">"@Item.Label.Label"</span>&#44;<br />
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position &#61; <span class="enum">LabelPosition</span>.InlineTopLeft<br />
 							&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;TextColor &#61; 
-							@if(_editing)
-							{
-								<input type="text" class="editable" value="@Item.TextColor" @onchange="@((e) => update("TextColor", e))" />
-							}
-							else
-							{
-								<span class="param">"@Item.TextColor"</span>
-							}
-							&#44;<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;BackgroundColor &#61; 
-							@if(_editing)
-							{
-								<input type="text" class="editable" value="@Item.BackgroundColor" @onchange="@((e) => update("BackgroundColor", e))" />
-							}
-							else
-							{
-								<span class="param">"@Item.BackgroundColor"</span>
-							}
-							&#44;<br />
 							&nbsp;&nbsp;&nbsp;&nbsp;Disabled &#61; 
 							@if(_editing)
 							{
