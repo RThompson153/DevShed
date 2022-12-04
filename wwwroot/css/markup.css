@@ -1,0 +1,32 @@
+﻿.cmpt {
+    color: rgb(3, 92, 65);
+    font-weight: bold;
+}
+
+.param {
+    color: rgb(189, 129, 20);
+}
+
+.bind {
+    color: rgb(49, 5, 180);
+}
+
+.white {
+    color: rgb(255, 255, 255);
+}
+
+.code {
+    color: rgb(254, 0, 101);
+}
+
+.key {
+    color: rgb(27, 2, 103);
+}
+
+.var {
+    color: rgb(0, 122, 255);
+}
+
+.enum {
+    color: rgb(29, 156, 185);
+}

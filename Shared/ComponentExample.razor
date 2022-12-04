@@ -1,0 +1,176 @@
+﻿@using DSComponents.Input.Models
+@using System.Text.Json
+@using DevShed.Services
+@using System.ComponentModel
+@using System.Reflection
+
+<div class="row mt-3 cursor-pointer @((!_expanded) ? "border-bottom" : "")">
+	<div class="col-12 d-flex p-0 component-example-head" @onclick="toggleExpanded">
+		<div class="d-block">
+			@Header
+		</div>
+
+		<i class="my-auto oi oi-chevron-@((_expanded) ? "top" : "bottom")"></i>
+	</div>
+</div>
+
+@if(_expanded)
+{
+	<div class="row component-example border py-3 bg-light">
+		<div class="col-12 d-flex">
+			<div class="col-2 example">
+				@Example
+			</div>
+
+			<div class="mx-3 component-example-exception">@_exception</div>
+
+			<div class="edit-icon d-flex cursor-pointer" @onclick="edit">
+				<span class="my-auto px-3 @((_editing) ? "cmpt" : "")">@((!_editing) ? "Edit" : "Save") Config</span><i class="oi oi-code my-auto @((_editing) ? "cmpt" : "")"></i>
+			</div>
+			
+		</div>
+
+		<div class="col-12 d-flex mt-3 py-1 border-top border-bottom">
+			<span class="section cursor-pointer" @onclick="@(() => _section = "usage")">Usage</span>
+			<span class="section cursor-pointer" @onclick="@(() => _section = "config")">Configuration</span>
+		</div>
+
+		<div class="col-12 mt-3 py-1 markup">
+			@switch(_section)
+			{
+				case "config":
+					<div class="col-12">
+						<span class="key">private </span><span class="cmpt">DSCInputConfig </span> _select &#61; <span class="key">new </span><span class="cmpt">DSCInputConfig</span><br />
+						&#123; <br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Name &#61 <span class="param">"@Item.Name"</span>&#44;<br />
+							@if(Item.SelectItems?.Any() == true)
+							{
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;SelectItems &#61 <span class="key">new </span><span class="cmpt">List</span>&lt;<span class="key">object</span>&gt;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&#123;</span><br />
+							
+								@foreach(var item in Item.SelectItems)
+								{
+									<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">"@(item)"</span>&#44;</span><br />
+								}
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;</span><br />
+							}
+							&nbsp;&nbsp;&nbsp;&nbsp;Label &#61 <span class="key">new </span><span class="cmpt">DSCLabelConfig</span><br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label &#61; <span class="param">"@Item.Label.Label"</span>&#44;<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position &#61; <span class="enum">LabelPosition</span>.InlineTopLeft<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&#125;&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Disabled &#61; 
+							@if(_editing)
+							{
+								<input type="checkbox" @onchange="@((e) => update("Disabled", e))" checked="@Item.Disabled" />
+							}
+							else
+							{
+								<span class="param">@Item.Disabled</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Multiple &#61; 
+							@if(_editing)
+							{
+								<input type="checkbox" @onchange="@((e) => update("Multiple", e))" checked="@Item.Multiple" />
+							}
+							else
+							{
+								<span class="param">@Item.Multiple</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Searchable &#61; 
+							@if(_editing)
+							{
+								<input type="checkbox" @onchange="@((e) => update("Searchable", e))" checked="@Item.Searchable" />
+							}
+							else
+							{
+								<span class="param">@Item.Searchable</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Minimum &#61; 
+							@if(_editing)
+							{
+								<input type="number" class="editable" value="@Item.Minimum" @onchange="@((e) => update("Minimum", e))" />
+							}
+							else
+							{
+								<span class="param">@Item.Minimum</span>
+							}
+							&#44;<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;Maximum &#61; 
+							@if(_editing)
+							{
+								<input type="number" class="editable" value="@Item.Maximum" @onchange="@((e) => update("Maximum", e))" />
+							}
+							else
+							{
+								<span class="param">@Item.Maximum</span>
+							}
+							
+							@if(Item.Timeout != null)
+							{
+								<span>
+									&#44;<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Timeout &#61; 
+									@if(_editing)
+									{
+										<input type="number" class="editable" value="@Item.Timeout" @onchange="@((e) => update("Timeout", e))" />
+									}
+									else
+									{
+										<span class="param">@Item.Timeout</span>
+									}
+								</span>
+								
+							}
+							<br />
+						&#125;
+					</div>
+					break;
+				default:
+					@Usage
+					break;
+			}
+		</div>
+	</div>
+}
+
+@code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
+	[Parameter]
+	public RenderFragment Header { get; set; }
+	[Parameter]
+	public RenderFragment Example { get; set; }
+	[Parameter]
+	public RenderFragment Usage { get; set; }
+	[Parameter]
+	public DSCConfig Item { get; set; }
+
+	private string _section, _exception;
+	private bool _expanded, _editing;
+	private PropertyInfo _property;
+
+	private void toggleExpanded() => _expanded = !_expanded;
+
+	private void edit()
+	{
+		_editing = !_editing;
+
+		_section = "config";
+	}
+
+	private void update(string prop, ChangeEventArgs e)
+	{
+		_property = Item.GetType().GetProperty(prop);
+
+		var converter = TypeDescriptor.GetConverter(_property.PropertyType);
+
+		var val = converter.ConvertFromString(e.Value.ToString());
+
+		_property.SetValue(Item, val);
+	}
+}

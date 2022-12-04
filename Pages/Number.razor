@@ -1,0 +1,82 @@
+﻿@layout PageLayout
+@page "/number"
+@using DSComponents.Input
+@using DSComponents.Enums
+@using DSComponents.Input.Models
+
+<div class="row">
+	<h3 class="p-0">DSC Number</h3>
+
+	<p class="p-0">The DSCNumber component is a custom input number box. To change the  configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
+</div>
+
+<ComponentExample Item="_basicNumber">
+	<Header>
+		<h4>@_basicNumber.Name</h4>
+		<p>The basic number input.</p>
+	</Header>
+
+	<Example>
+		<DSCNumber Config="@_basicNumber" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+<ComponentExample Item="_noSpinNumber">
+	<Header>
+		<h4>@_noSpinNumber.Name w/ no spinner</h4>
+		<p>The basic number input with hidden spin buttons.</p>
+	</Header>
+
+	<Example>
+		<DSCNumber Config="@_noSpinNumber" HideSpin="true" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideSpin</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+<ComponentExample Item="_hiddenLabelNumber">
+	<Header>
+		<h4>@_hiddenLabelNumber.Name w/ hidden label</h4>
+		<p>Number input with hidden label.</p>
+	</Header>
+
+	<Example>
+		<DSCNumber Config="@_hiddenLabelNumber" HideLabel="true" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+@code {
+	private DSCConfig _basicNumber = new DSCConfig
+	{
+		Name = "Standard Number",
+		Label = new DSCLabelConfig { Label = "Standard Number", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _noSpinNumber = new DSCConfig
+	{
+		Name = "Number",
+		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _hiddenLabelNumber = new DSCConfig
+	{
+		Name = "Number",
+		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopLeft }
+	};
+}

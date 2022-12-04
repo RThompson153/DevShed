@@ -1,0 +1,161 @@
+﻿@layout PageLayout
+@page "/select"
+
+@using DSComponents.Input
+@using DSComponents.Enums
+@using DSComponents.Input.Models
+@using DevShed.Models
+@using DevShed.Services
+
+<div class="row">
+	<h3 class="p-0">DSC Select</h3>
+
+	<p class="p-0">The DSC Select component is a custom dropdown menu that displays a selectable list of items. To change the  configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
+</div>
+
+<ComponentExample Item="@_basicSelect">
+	<Header>
+		<h4>@_basicSelect.Name</h4>
+	</Header>
+
+	<Example>
+		<DSCSelect Config="@_basicSelect" @bind-Expanded="@_basicSelect.Expanded">
+			@foreach(var item in _basicSelect.SelectItems)
+			{
+				<DSCSelectItem Value="@item"  />
+			}
+		</DSCSelect>
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
+			&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
+		</div>
+	</Usage>
+</ComponentExample>
+
+<ComponentExample Item="@_hideLabelSelect">
+	<Header>
+		<h4>@_hideLabelSelect.Name w/ hidden label</h4>
+	</Header>
+
+	<Example>
+		<DSCSelect Config="@_hideLabelSelect" HideLabel="true" @bind-Expanded="@_hideLabelSelect.Expanded">
+			@foreach(var item in _hideLabelSelect.SelectItems)
+			{
+				<DSCSelectItem Value="@item"  />
+			}
+		</DSCSelect>
+	</Example>
+
+	<Usage>
+		<div class="col-6">
+			&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
+			&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
+		</div>
+	</Usage>
+</ComponentExample>
+
+<APIComponent Header="@_apiHeader">
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCSelect</h5></td></tr>
+	<tr>
+		<td>Config</td>
+		<td>Required - <span class="cmpt">DSCInputConfig</span></td>
+		<td>N/A</td>
+		<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
+	</tr>
+	<tr>
+		<td>Expanded</td>
+		<td>Required - bool</td>
+		<td>False</td>
+		<td>Component expanded state.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCSelectItem</h5></td></tr>
+	<tr>
+		<td>Value</td>
+		<td>Required - object</td>
+		<td>null</td>
+		<td>Value of the select item.</td>
+	</tr>
+	<tr>
+		<td>SelectCallback</td>
+		<td>Optional - EventCallback</td>
+		<td>null</td>
+		<td>Callback method to fire when selecting an item.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCInputConfig</h5></td></tr>
+	@foreach(var row in _apiRows)
+	{
+		<tr>
+			<td>@row.Property</td>
+			<td>@row.Type</td>
+			<td>@row.DefaultValue</td>
+			<td>@row.Description</td>
+		</tr>
+	}
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCLabelConfig</h5></td></tr>
+	<tr>
+		<td>Label</td>
+		<td>Optional - string</td>
+		<td>null</td>
+		<td>The label name for the component.</td>
+	</tr>
+	<tr>
+		<td>LabelPosition</td>
+		<td>Optional - <span class="cmpt">LabelPosition</span></td>
+		<td>null</td>
+		<td>The position of the component's label.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCService</h5></td></tr>
+	<tr>
+		<td>IDSCService</td>
+		<td>Required</td>
+		<td>N/A</td>
+		<td>Injectable service used to manage component interactions.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h6>Methods</h6></td></tr>
+	<tr>
+		<td>CloseDropdowns</td>
+		<td>Optional</td>
+		<td>N/A</td>
+		<td>Closes all open dropdowns. Place as a click event on the root element of your page.</td>
+	</tr>
+</APIComponent>
+
+@code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
+	private IEnumerable<string> _apiHeader = new List<string> { "Parameter", "Type", "Default Value", "Description" };
+	private List<TableRow> _apiRows;
+
+	private DSCConfig _basicSelect = new DSCConfig
+	{
+		Name = "Standard Select",
+		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
+		Label = new DSCLabelConfig {Label = "Standard Select", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _hideLabelSelect = new DSCConfig
+	{
+		Name = "Select",
+		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
+		Label = new DSCLabelConfig {Label = "Select", Position = Position.InlineTopLeft }
+	};
+
+	protected override Task OnInitializedAsync()
+	{
+		_apiRows = StateContainer.BuildAPITable<DSCConfig>();
+
+		return base.OnInitializedAsync();
+	}
+}

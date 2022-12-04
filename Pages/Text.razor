@@ -1,0 +1,160 @@
+﻿@layout PageLayout
+@page "/text"
+
+@using DSComponents.Input
+@using DSComponents.Enums
+@using DSComponents.Input.Models
+@using DevShed.Models
+@using DevShed.Services
+
+<div class="row">
+	<h3 class="p-0">DSC Text</h3>
+
+	<p class="p-0">The DSCText component is a custom input text box. To change the configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
+</div>
+
+<ComponentExample Item="_basicText">
+	<Header>
+		<h4>!_basicText.Name</h4>
+	</Header>
+
+	<Example>
+		<DSCText Config="@_basicText" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+<ComponentExample Item="_hideLabelText">
+	<Header>
+		<h4>@_hideLabelText.Name w/ hidden label</h4>
+	</Header>
+
+	<Example>
+		<DSCText Config="@_hideLabelText" HideLabel="true" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+<ComponentExample Item="_ignoreText">
+	<Header>
+		<h4>@_ignoreText.Name w/ pattern ignore</h4>
+	</Header>
+	<Example>
+		<DSCText Config="@_ignoreText" Ignore="IgnorePattern.Numeric" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">Ignore</span>&#61;&#34;<span class="bind">IgnorePattern.Numeric</span>&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+<APIComponent Header="_apiHeader">
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCText</h5></td></tr>
+	<tr>
+		<td>Config</td>
+		<td>Required - <span class="cmpt">DSCInputConfig</span></td>
+		<td>N/A</td>
+		<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
+	</tr>
+	<tr>
+		<td>HideLabel</td>
+		<td>Optional - bool</td>
+		<td>False</td>
+		<td>Parameter to determine whether the label is shown or not.</td>
+	</tr>
+	<tr>
+		<td>Ignore</td>
+		<td>Optional - IgnorePattern</td>
+		<td>N/A</td>
+		<td>Character enum the component should not allow.</td>
+	</tr>
+	<tr>
+		<td>Pattern</td>
+		<td>Optional - Regex Pattern</td>
+		<td>N/A</td>
+		<td>Regex pattern the component should not allow. Is required if the Ignore Pattern is set to <span class="cmpt">IgnorePattern.Custom</span>.</td>
+	</tr>
+	<tr>
+		<td>OnInput</td>
+		<td>Optional - EventCallback</td>
+		<td>N/A</td>
+		<td>Event callback that fires on input. Is required if a timeout value is set.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCInputConfig</h5></td></tr>
+	@foreach(var row in _apiRows)
+	{
+		<tr>
+			<td>@row.Property</td>
+			<td>@row.Type</td>
+			<td>@row.DefaultValue</td>
+			<td>@row.Description</td>
+		</tr>
+	}
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCLabelConfig</h5></td></tr>
+	<tr>
+		<td>Label</td>
+		<td>Optional - string</td>
+		<td>null</td>
+		<td>The label name for the component.</td>
+	</tr>
+	<tr>
+		<td>LabelPosition</td>
+		<td>Optional - <span class="cmpt">LabelPosition</span></td>
+		<td>null</td>
+		<td>The position of the component's label.</td>
+	</tr>
+	<tr><td colspan="@_apiHeader.Count()"><h5>DSCService</h5></td></tr>
+	<tr>
+		<td>IDSCService</td>
+		<td>Required</td>
+		<td>N/A</td>
+		<td>Injectable service used to manage component interactions.</td>
+	</tr>
+</APIComponent>
+
+@code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
+	private IEnumerable<string> _apiHeader = new List<string> { "Parameter", "Type", "Default Value", "Description" };
+	private List<TableRow> _apiRows;
+
+	private DSCConfig _basicText = new DSCConfig
+	{
+		Name = "Standard Text",
+		Label = new DSCLabelConfig { Label = "Standard Text", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _hideLabelText = new DSCConfig
+	{
+		Name = "Text",
+		Label = new DSCLabelConfig { Label = "Text", Position = Position.InlineTopLeft }
+	};
+
+	private DSCConfig _ignoreText = new DSCConfig
+	{
+		Name = "Text",
+		Label = new DSCLabelConfig { Label = "Pattern Ignore Text", Position = Position.InlineTopLeft }
+	};
+
+	protected override Task OnInitializedAsync()
+	{
+		_apiRows = StateContainer.BuildAPITable<DSCConfig>();
+
+		return base.OnInitializedAsync();
+	}
+
+	private void inputCallback(string val){}
+}

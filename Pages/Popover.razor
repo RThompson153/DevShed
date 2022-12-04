@@ -1,0 +1,28 @@
+﻿@layout PageLayout
+@page "/popover"
+@using DSComponents.Enums
+@using DSComponents.Popover
+@using DevShed.Services
+
+<div class="row">
+	<h3 class="p-0">DSC Popover</h3>
+
+	<p class="p-0"></p>
+
+	<div class="col-6">
+		<button type="button" class="btn btn-primary" @onclick="togglePopover">Popover Right</button>
+		<DSCPopover @bind-Open="@_open" Position="Position.Right">
+			<Title>Title</Title>
+			<Content>Content</Content>
+		</DSCPopover>
+	</div>
+</div>
+
+@code {
+	[CascadingParameter]
+	protected IStateContainer StateContainer { get; set; }
+
+	private bool _open;
+
+	private void togglePopover() => _open = !_open;
+}

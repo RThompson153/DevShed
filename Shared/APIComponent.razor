@@ -1,0 +1,22 @@
+﻿<div class="row mt-3">
+	<h4 class="p-0">API</h4>
+	
+	<table class="table table-responsive">
+		<thead>
+			@foreach(var th in Header)
+			{
+				<th>@th</th>
+			}
+		</thead>
+		<tbody>
+			@ChildContent
+		</tbody>
+	</table>
+</div>
+
+@code{
+	[Parameter]
+	public IEnumerable<string> Header { get; set; }
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+}
