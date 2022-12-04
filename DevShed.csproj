@@ -10,16 +10,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DSComponents" Version="1.1.4-alpha" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.3" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
     <Page Include="Pages\Index.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DSComponents\DSComponents\DSComponents.csproj" />
   </ItemGroup>
 
 </Project>
