@@ -35,7 +35,7 @@
 	</Header>
 
 	<Example>
-		<DSCText Config="@_hideLabelText" HideLabel="true" />
+		<DSCText Config="@_hideLabelText" />
 	</Example>
 
 	<Usage>
@@ -134,19 +134,19 @@
 	private DSCConfig _basicText = new DSCConfig
 	{
 		Name = "Standard Text",
-		Label = new DSCLabelConfig { Label = "Standard Text", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Standard", Position = Position.InlineTopLeft }
 	};
 
 	private DSCConfig _hideLabelText = new DSCConfig
 	{
 		Name = "Text",
-		Label = new DSCLabelConfig { Label = "Text", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Text", Position = Position.Left }
 	};
 
 	private DSCConfig _ignoreText = new DSCConfig
 	{
 		Name = "Text",
-		Label = new DSCLabelConfig { Label = "Pattern Ignore Text", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Pattern Ignore", Position = Position.InlineTopRight }
 	};
 
 	protected override Task OnInitializedAsync()

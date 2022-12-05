@@ -45,7 +45,7 @@
 	</Header>
 
 	<Example>
-		<DSCSelect Config="@_hideLabelSelect" HideLabel="true" @bind-Expanded="@_hideLabelSelect.Expanded">
+		<DSCSelect Config="@_hideLabelSelect" @bind-Expanded="@_hideLabelSelect.Expanded">
 			@foreach(var item in _hideLabelSelect.SelectItems)
 			{
 				<DSCSelectItem Value="@item"  />
@@ -142,15 +142,16 @@
 	{
 		Name = "Standard Select",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
-		Label = new DSCLabelConfig {Label = "Standard Select", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig {Label = "Select", Position = Position.Right }
 	};
 
 	private DSCConfig _hideLabelSelect = new DSCConfig
 	{
 		Name = "Select",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
-		Label = new DSCLabelConfig {Label = "Select", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig {Label = "Select", Position = Position.Left }
 	};
+
 
 	protected override Task OnInitializedAsync()
 	{
