@@ -15,3 +15,11 @@
 .disabled{
 	background-color: rgba(0, 0, 0, 0.25) !important;
 }
+
+.uncheckedimage{
+	background-image: url('../images/unchecked.png');
+}
+
+.checkedimage {
+	background-image: url('../images/checked.png');
+}

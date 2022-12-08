@@ -3,7 +3,6 @@
 
 @using DSComponents.Input
 @using DSComponents.Enums
-@using DSComponents.Input.Models
 @using DevShed.Models
 @using DevShed.Services
 
@@ -45,6 +44,22 @@
 	</Usage>
 </ComponentExample>
 
+<ComponentExample Item="@_imageCheckbox">
+	<Header>
+		<h4>@_imageCheckbox.Name</h4>
+	</Header>
+
+	<Example>
+		<DSCCheckbox Config="@_imageCheckbox" CheckedImage="checkedimage" UncheckedImage="uncheckedimage" Size="small" CheckedCallback="onCheck" />
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
 @code {
 	[CascadingParameter]
 	protected IStateContainer StateContainer { get; set; }
@@ -66,11 +81,18 @@
 	};
 
 	private DSCConfig _switchCheckbox = new DSCConfig
-		{
-			Name = "Switch",
-			Label = new DSCLabelConfig { Label = "Switch", Position = Position.Right },
-			CheckboxType = CheckboxType.Switch
-		};
+	{
+		Name = "Switch",
+		Label = new DSCLabelConfig { Label = "Switch", Position = Position.Right },
+		CheckboxType = CheckboxType.Switch
+	};
+
+	private DSCConfig _imageCheckbox = new DSCConfig
+	{
+		Name = "Image",
+		Label = new DSCLabelConfig { Label = "Switch", Position = Position.Left },
+		CheckboxType = CheckboxType.Image
+	};
 
 	private void onCheck(bool isChecked)
 	{

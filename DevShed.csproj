@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="Pages\Index.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DSComponents\DSComponents\DSComponents.csproj" />
   </ItemGroup>
 
