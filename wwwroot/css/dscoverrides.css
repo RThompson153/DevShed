@@ -23,3 +23,11 @@
 .checkedimage {
 	background-image: url('../images/checked.png');
 }
+
+.checkedicon{
+	content: '\F171';
+}
+
+.uncheckedicon {
+	content: '\F173';
+}
