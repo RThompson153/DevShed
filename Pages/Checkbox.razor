@@ -34,12 +34,12 @@
 	</Header>
 
 	<Example>
-		<DSCCheckbox Config="@_switchCheckbox" CheckedCallback="onCheck" />
+		<DSCCheckbox Config="@_switchCheckbox" Type="CheckboxType.Switch" CheckedCallback="onCheck" />
 	</Example>
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Switch&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
 		</div>
 	</Usage>
 </ComponentExample>
@@ -50,12 +50,12 @@
 	</Header>
 
 	<Example>
-		<DSCCheckbox Config="@_imageCheckbox" CheckedImage="checkedimage" UncheckedImage="uncheckedimage" Size="small" CheckedCallback="onCheck" />
+		<DSCCheckbox Config="@_imageCheckbox" Type="CheckboxType.Image" Checked="checkedimage" Unchecked="uncheckedimage" Size="small" CheckedCallback="onCheck" />
 	</Example>
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Image&#34; <span class="cmpt">Checked</span>&#61&#34;checkedImageClass&#34; <span class="cmpt">Unchecked</span>&#61&#34;uncheckedImageClass&#34; <span class="cmpt">Size</span>&#61&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
 		</div>
 	</Usage>
 </ComponentExample>
@@ -66,12 +66,12 @@
 	</Header>
 
 	<Example>
-		<DSCCheckbox Config="@_iconCheckbox" CheckedImage="bi bi-bag-check" UncheckedImage="bi bi-bag-dash" Size="small" CheckedCallback="onCheck" />
+		<DSCCheckbox Config="@_iconCheckbox" Type="CheckboxType.Icon" Checked="bi bi-bag-check" Unchecked="bi bi-bag-dash" Size="small" CheckedCallback="onCheck" />
 	</Example>
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Icon&#34; <span class="cmpt">Checked</span>&#61&#34;checkedIconClass&#34; <span class="cmpt">Unchecked</span>&#61&#34;uncheckedIconClass&#34; <span class="cmpt">Size</span>&#61&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
 		</div>
 	</Usage>
 </ComponentExample>
@@ -99,22 +99,19 @@
 	private DSCConfig _switchCheckbox = new DSCConfig
 	{
 		Name = "Switch",
-		Label = new DSCLabelConfig { Label = "Switch", Position = Position.Left },
-		CheckboxType = CheckboxType.Switch
+		Label = new DSCLabelConfig { Label = "Switch", Position = Position.Left }
 	};
 
 	private DSCConfig _imageCheckbox = new DSCConfig
 	{
 		Name = "Image",
-		Label = new DSCLabelConfig { Label = "Image", Position = Position.Top },
-		CheckboxType = CheckboxType.Image
+		Label = new DSCLabelConfig { Label = "Image", Position = Position.Top }
 	};
 
 	private DSCConfig _iconCheckbox = new DSCConfig
 	{
 		Name = "Icon",
-		Label = new DSCLabelConfig { Label = "Icon", Position = Position.Left },
-		CheckboxType = CheckboxType.Icon
+		Label = new DSCLabelConfig { Label = "Icon", Position = Position.Right }
 	};
 
 	private void onCheck(bool isChecked)

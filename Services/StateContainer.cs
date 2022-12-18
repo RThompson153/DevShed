@@ -8,9 +8,8 @@ namespace DevShed.Services
 	public class StateContainer : IStateContainer
     {
         public IDSCService DSCService { get; set; }
-
         public DSCConfig EditingConfig { get; set; }
-
+		public string[] TableHeaders = new string[] { "Parameter", "Type", "Default Value", "Description" };
         public StateContainer(IDSCService dscService)
         {
             DSCService = dscService;
