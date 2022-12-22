@@ -3,7 +3,6 @@
 
 @using DSComponents.Input
 @using DSComponents.Enums
-@using DSComponents.Input.Models
 @using DevShed.Models
 @using DevShed.Services
 
@@ -15,7 +14,7 @@
 
 <ComponentExample Item="_basicText">
 	<Header>
-		<h4>!_basicText.Name</h4>
+		<h4>@_basicText.Name</h4>
 	</Header>
 
 	<Example>
@@ -24,7 +23,21 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;&gt; </p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _text = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_basicText.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_basicText.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_basicText.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -32,6 +45,7 @@
 <ComponentExample Item="_hideLabelText">
 	<Header>
 		<h4>@_hideLabelText.Name w/ hidden label</h4>
+		<p>Hiding the label of a component can be achieved in two ways.  By explicitly telling the component to hide the label, or by not setting the <span class="cmpt">Label</span> property in the configuration.</p>
 	</Header>
 
 	<Example>
@@ -40,7 +54,21 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; </p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _text = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_hideLabelText.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_hideLabelText.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_hideLabelText.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -55,24 +83,34 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">Ignore</span>&#61;&#34;<span class="bind">IgnorePattern.Numeric</span>&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCText Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">Ignore</span>&#61;&#34;<span class="bind">IgnorePattern.Numeric</span>&#34; &#47;&gt; </p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _text = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_ignoreText.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_ignoreText.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_ignoreText.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
 
-<APIComponent Header="_apiHeader">
+<CssOverridesComponent />
+
+@*<APIComponent Header="_apiHeader">
 	<tr><td colspan="@_apiHeader.Count()"><h5>DSCText</h5></td></tr>
 	<tr>
 		<td>Config</td>
 		<td>Required - <span class="cmpt">DSCInputConfig</span></td>
 		<td>N/A</td>
 		<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
-	</tr>
-	<tr>
-		<td>HideLabel</td>
-		<td>Optional - bool</td>
-		<td>False</td>
-		<td>Parameter to determine whether the label is shown or not.</td>
 	</tr>
 	<tr>
 		<td>Ignore</td>
@@ -122,7 +160,7 @@
 		<td>N/A</td>
 		<td>Injectable service used to manage component interactions.</td>
 	</tr>
-</APIComponent>
+</APIComponent>*@
 
 @code {
 	[CascadingParameter]
@@ -133,20 +171,20 @@
 
 	private DSCConfig _basicText = new DSCConfig
 	{
-		Name = "Standard Text",
-		Label = new DSCLabelConfig { Label = "Standard Text", Position = Position.InlineTopLeft }
+		Name = "Text",
+		Label = new DSCLabelConfig { Label = "Text", Position = Position.InlineTopLeft }
 	};
 
 	private DSCConfig _hideLabelText = new DSCConfig
 	{
 		Name = "Text",
-		Label = new DSCLabelConfig { Label = "Text", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Text", Position = Position.Left }
 	};
 
 	private DSCConfig _ignoreText = new DSCConfig
 	{
 		Name = "Text",
-		Label = new DSCLabelConfig { Label = "Pattern Ignore Text", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Text", Position = Position.InlineTopRight }
 	};
 
 	protected override Task OnInitializedAsync()

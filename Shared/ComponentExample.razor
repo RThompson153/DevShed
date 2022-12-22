@@ -1,5 +1,4 @@
-﻿@using DSComponents.Input.Models
-@using System.Text.Json
+﻿@using System.Text.Json
 @using DevShed.Services
 @using System.ComponentModel
 @using System.Reflection
@@ -40,7 +39,7 @@
 			{
 				case "config":
 					<div class="col-12">
-						<span class="key">private </span><span class="cmpt">DSCInputConfig </span> _select &#61; <span class="key">new </span><span class="cmpt">DSCInputConfig</span><br />
+						<span class="key">private </span><span class="cmpt">DSCConfig </span> _select &#61; <span class="key">new </span><span class="cmpt">DSCConfig</span><br />
 						&#123; <br />
 							&nbsp;&nbsp;&nbsp;&nbsp;Name &#61 <span class="param">"@Item.Name"</span>&#44;<br />
 							@if(Item.SelectItems?.Any() == true)

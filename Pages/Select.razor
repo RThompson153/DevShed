@@ -3,7 +3,6 @@
 
 @using DSComponents.Input
 @using DSComponents.Enums
-@using DSComponents.Input.Models
 @using DevShed.Models
 @using DevShed.Services
 
@@ -29,12 +28,34 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
-			&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
+			&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;</p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _select = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_basicSelect.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_basicSelect.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_basicSelect.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelectItems = <span class="var">new</span> <span class="cmpt">List</span>&lt;<span class="var">object</span>&gt;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				@foreach(var item in _basicSelect.SelectItems)
+				{
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">&#34;@(item)&#34;</span>,</span><br />
+				}
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -55,17 +76,41 @@
 
 	<Usage>
 		<div class="col-6">
-			&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCSelect Config</span>&#61;&#34;<span class="bind">&#64;</span>_select&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; <span class="bind">&#64;bind&#45;Expanded</span>&#61;&#34;<span class="bind">&#64;</span>_select.Expanded&#34;&gt; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _select.SelectItems&#41; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCSelectItem Value</span>&#61;&#34;<span class="bind">&#64;</span><span class="var">item</span>&#34; &#47;&gt; <br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
-			&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;
+			&lt;&#47;<span class="cmpt">DSCSelect</span>&gt;</p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _select = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_hideLabelSelect.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_hideLabelSelect.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_hideLabelSelect.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelectItems = <span class="var">new</span> <span class="cmpt">List</span>&lt;<span class="var">object</span>&gt;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				@foreach(var item in _hideLabelSelect.SelectItems)
+				{
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param">&#34;@(item)&#34;</span>,</span><br />
+				}
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
 
-<APIComponent Header="@_apiHeader">
+<CssOverridesComponent />
+
+@*<APIComponent Header="@_apiHeader">
 	<tr><td colspan="@_apiHeader.Count()"><h5>DSCSelect</h5></td></tr>
 	<tr>
 		<td>Config</td>
@@ -129,7 +174,7 @@
 		<td>N/A</td>
 		<td>Closes all open dropdowns. Place as a click event on the root element of your page.</td>
 	</tr>
-</APIComponent>
+</APIComponent>*@
 
 @code {
 	[CascadingParameter]
@@ -142,15 +187,16 @@
 	{
 		Name = "Standard Select",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
-		Label = new DSCLabelConfig {Label = "Standard Select", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig {Label = "Select", Position = Position.Right }
 	};
 
 	private DSCConfig _hideLabelSelect = new DSCConfig
 	{
 		Name = "Select",
 		SelectItems = new List<object>{ "Item 1", "Item 2", "Item 3" },
-		Label = new DSCLabelConfig {Label = "Select", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig {Label = "Select", Position = Position.Left }
 	};
+
 
 	protected override Task OnInitializedAsync()
 	{

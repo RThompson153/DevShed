@@ -11,3 +11,25 @@
 	border-color: rgb(155, 0, 0);
 	box-shadow: 2px 2px 5px rgba(155, 0, 0, 0.5);
 }
+
+.disabled{
+	background-color: rgb(200, 200, 200) !important;
+	color: rgb(100, 100, 100) !important;
+	border-color: rgb(150, 150, 150) !important;
+}
+
+.uncheckedimage{
+	background-image: url('../images/unchecked.png');
+}
+
+.checkedimage {
+	background-image: url('../images/checked.png');
+}
+
+.checkedicon{
+	content: '\F171';
+}
+
+.uncheckedicon {
+	content: '\F173';
+}

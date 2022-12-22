@@ -2,7 +2,6 @@
 @page "/number"
 @using DSComponents.Input
 @using DSComponents.Enums
-@using DSComponents.Input.Models
 
 <div class="row">
 	<h3 class="p-0">DSC Number</h3>
@@ -13,7 +12,6 @@
 <ComponentExample Item="_basicNumber">
 	<Header>
 		<h4>@_basicNumber.Name</h4>
-		<p>The basic number input.</p>
 	</Header>
 
 	<Example>
@@ -22,7 +20,21 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_number&#34; &#47;&gt; </p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _number = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_basicNumber.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_basicNumber.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_basicNumber.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -30,7 +42,6 @@
 <ComponentExample Item="_noSpinNumber">
 	<Header>
 		<h4>@_noSpinNumber.Name w/ no spinner</h4>
-		<p>The basic number input with hidden spin buttons.</p>
 	</Header>
 
 	<Example>
@@ -39,7 +50,21 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideSpin</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_number&#34; <span class="cmpt">HideSpin</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt;</p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _number = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_noSpinNumber.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_noSpinNumber.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_noSpinNumber.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -47,7 +72,6 @@
 <ComponentExample Item="_hiddenLabelNumber">
 	<Header>
 		<h4>@_hiddenLabelNumber.Name w/ hidden label</h4>
-		<p>Number input with hidden label.</p>
 	</Header>
 
 	<Example>
@@ -56,27 +80,43 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_text&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCNumber Config</span>&#61;&#34;<span class="bind">&#64;</span>_number&#34; <span class="cmpt">HideLabel</span>&#61;&#34;<span class="bind">true</span>&#34; &#47;&gt;</p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _number = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_hiddenLabelNumber.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_hiddenLabelNumber.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_hiddenLabelNumber.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
 
+<CssOverridesComponent />
+
 @code {
 	private DSCConfig _basicNumber = new DSCConfig
 	{
-		Name = "Standard Number",
-		Label = new DSCLabelConfig { Label = "Standard Number", Position = Position.InlineTopLeft }
+		Name = "Number",
+		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopLeft }
 	};
 
 	private DSCConfig _noSpinNumber = new DSCConfig
 	{
 		Name = "Number",
-		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopRight }
 	};
 
 	private DSCConfig _hiddenLabelNumber = new DSCConfig
 	{
 		Name = "Number",
-		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTopLeft }
+		Label = new DSCLabelConfig { Label = "Number", Position = Position.InlineTop }
 	};
 }
