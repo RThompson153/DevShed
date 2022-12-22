@@ -7,7 +7,7 @@
 	min-height: calc(100vh - 2.5rem);
 }
 
-.side-nav ul{
+ul{
 	list-style: none;
 }
 
@@ -74,10 +74,6 @@
 
 .component-example-exception{
 	color: rgb(155, 0, 0);
-}
-
-.disabled {
-	background-color: rgb(150, 150, 150);
 }
 
 .icon{

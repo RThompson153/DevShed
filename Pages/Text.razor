@@ -45,6 +45,7 @@
 <ComponentExample Item="_hideLabelText">
 	<Header>
 		<h4>@_hideLabelText.Name w/ hidden label</h4>
+		<p>Hiding the label of a component can be achieved in two ways.  By explicitly telling the component to hide the label, or by not setting the <span class="cmpt">Label</span> property in the configuration.</p>
 	</Header>
 
 	<Example>
@@ -101,6 +102,8 @@
 	</Usage>
 </ComponentExample>
 
+<CssOverridesComponent />
+
 @*<APIComponent Header="_apiHeader">
 	<tr><td colspan="@_apiHeader.Count()"><h5>DSCText</h5></td></tr>
 	<tr>
@@ -108,12 +111,6 @@
 		<td>Required - <span class="cmpt">DSCInputConfig</span></td>
 		<td>N/A</td>
 		<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
-	</tr>
-	<tr>
-		<td>HideLabel</td>
-		<td>Optional - bool</td>
-		<td>False</td>
-		<td>Parameter to determine whether the label is shown or not.</td>
 	</tr>
 	<tr>
 		<td>Ignore</td>
