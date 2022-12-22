@@ -18,12 +18,26 @@
 	</Header>
 
 	<Example>
-		<DSCCheckbox Config="@_basicCheckbox" CheckedCallback="onCheck" />
+		<DSCCheckbox Config="@_basicCheckbox" Size="small" CheckedCallback="onCheck" />
 	</Example>
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Size</span>&#61;&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; </p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _checkbox = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_basicCheckbox.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_basicCheckbox.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_basicCheckbox.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -34,12 +48,26 @@
 	</Header>
 
 	<Example>
-		<DSCCheckbox Config="@_switchCheckbox" Type="CheckboxType.Switch" CheckedCallback="onCheck" />
+		<DSCCheckbox Config="@_switchCheckbox" Type="CheckboxType.Switch" Size="small" CheckedCallback="onCheck" />
 	</Example>
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Switch&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Switch&#34;  <span class="cmpt">Size</span>&#61;&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; </p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _checkbox = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_switchCheckbox.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_switchCheckbox.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_switchCheckbox.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -55,7 +83,21 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Image&#34; <span class="cmpt">Checked</span>&#61&#34;checkedImageClass&#34; <span class="cmpt">Unchecked</span>&#61&#34;uncheckedImageClass&#34; <span class="cmpt">Size</span>&#61&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Image&#34; <span class="cmpt">Checked</span>&#61&#34;checkedImageClass&#34; <span class="cmpt">Unchecked</span>&#61&#34;uncheckedImageClass&#34; <span class="cmpt">Size</span>&#61&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; </p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _checkbox = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_imageCheckbox.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_imageCheckbox.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_imageCheckbox.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>
@@ -71,7 +113,21 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Icon&#34; <span class="cmpt">Checked</span>&#61&#34;checkedIconClass&#34; <span class="cmpt">Unchecked</span>&#61&#34;uncheckedIconClass&#34; <span class="cmpt">Size</span>&#61&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			<p>&lt;<span class="cmpt">DSCCheckbox Config</span>&#61;&#34;<span class="bind">&#64;</span>_checkbox&#34; <span class="cmpt">Type</span>&#61;&#34;CheckboxType.Icon&#34; <span class="cmpt">Checked</span>&#61&#34;checkedIconClass&#34; <span class="cmpt">Unchecked</span>&#61&#34;uncheckedIconClass&#34; <span class="cmpt">Size</span>&#61&#34;small&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt;</p>
+
+			<p>
+				<span class="bind">&#64;code&#123;</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmpt">DSCConfig</span> _checkbox = <span class="var">new</span> <span class="cmpt">DSCConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = <span class="param">&#34;@_iconCheckbox.Name&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="var">new</span> <span class="cmpt">DSCLabelConfig</span><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label = <span class="param">&#34;@_iconCheckbox.Label.Label&#34;</span>,<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = <span class="enum">Position</span>.@_iconCheckbox.Label.Position<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+				<span class="bind">&#125;</span>
+			</p>
 		</div>
 	</Usage>
 </ComponentExample>

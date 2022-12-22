@@ -9,7 +9,7 @@
 <div class="row">
 	<h3 class="p-0">DSC Radio</h3>
 
-	<p class="p-0">The DSCRadio component is a custom checkbox. To change the configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
+	<p class="p-0">The DSCRadio component is a custom radio button. To change the configuration settings, click the <span class="cmpt">Edit Config</span> button. The component has additional parameters that operate independently of the configurations.</p>
 </div>
 
 <ComponentExample Item="@(_basicRadioGroup.FirstOrDefault())">
@@ -21,7 +21,7 @@
 		<DSCRadioGroup GroupName="@(_basicRadioGroup.FirstOrDefault().Name)">
 			@foreach(var item in _basicRadioGroup)
 			{
-				<DSCRadio Config="@item" Value="@(item.Label.Label)" CheckCallback="onCheck" />
+				<DSCRadio Config="@item" Value="@(item.Label.Label)" Size="small" CheckCallback="onCheck" />
 			}
 		</DSCRadioGroup>
 			
@@ -29,21 +29,26 @@
 
 	<Usage>
 		<div class="col-12">
-			&lt;<span class="cmpt">DSCRadio Config</span>&#61;&#34;<span class="bind">&#64;</span>_radio&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			&lt;<span class="cmpt">DSCRadioGroup GroupName</span>&#61;&#34;groupName&#34; &#47;&gt<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind"></span><span class="code">foreach</span>&#40;<span class="key">var</span> <span class="var">item</span> <span class="code">in</span> _radioGroup&#41;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#123; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cmpt">DSCRadio Config</span>&#61;&#34;<span class="bind">&#64;</span>_radio&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#125 <br />
+			&lt;&#47;<span class="cmpt">DSCRadioGroup</span>&gt;
 		</div>
 	</Usage>
 </ComponentExample>
 
-<ComponentExample Item="@(_basicRadioGroup1.FirstOrDefault())">
+<ComponentExample Item="@(_iconRadioGroup.FirstOrDefault())">
 	<Header>
-		<h4>@(_basicRadioGroup1.FirstOrDefault().Name)</h4>
+		<h4>@(_iconRadioGroup.FirstOrDefault().Name)</h4>
 	</Header>
 
 	<Example>
-		<DSCRadioGroup GroupName="@(_basicRadioGroup1.FirstOrDefault().Name)">
-			@foreach(var item in _basicRadioGroup1)
+		<DSCRadioGroup GroupName="@(_iconRadioGroup.FirstOrDefault().Name)">
+			@foreach(var item in _iconRadioGroup)
 			{
-				<DSCRadio Config="@item" Value="@(item.Label.Label)" />
+				<DSCRadio Config="@item" Type="CheckboxType.Icon" Value="@(item.Label.Label)" Size="small" Unchecked="bi bi-award" Checked="bi bi-award-fill" />
 			}
 		</DSCRadioGroup>
 			
@@ -55,6 +60,51 @@
 		</div>
 	</Usage>
 </ComponentExample>
+
+<ComponentExample Item="@(_imageRadioGroup.FirstOrDefault())">
+	<Header>
+		<h4>@(_imageRadioGroup.FirstOrDefault().Name)</h4>
+	</Header>
+
+	<Example>
+		<DSCRadioGroup GroupName="@(_imageRadioGroup.FirstOrDefault().Name)">
+			@foreach(var item in _imageRadioGroup)
+			{
+				<DSCRadio Config="@item" Type="CheckboxType.Image" Value="@(item.Label.Label)" Size="small" Unchecked="uncheckedimage" Checked="checkedimage" />
+			}
+		</DSCRadioGroup>
+			
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCRadio Config</span>&#61;&#34;<span class="bind">&#64;</span>_radio&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
+<ComponentExample Item="@(_switchRadioGroup.FirstOrDefault())">
+	<Header>
+		<h4>@(_switchRadioGroup.FirstOrDefault().Name)</h4>
+	</Header>
+
+	<Example>
+		<DSCRadioGroup GroupName="@(_switchRadioGroup.FirstOrDefault().Name)">
+			@foreach(var item in _switchRadioGroup)
+			{
+				<DSCRadio Config="@item" Type="CheckboxType.Switch" Size="small" Value="@(item.Label.Label)" />
+			}
+		</DSCRadioGroup>
+			
+	</Example>
+
+	<Usage>
+		<div class="col-12">
+			&lt;<span class="cmpt">DSCRadio Config</span>&#61;&#34;<span class="bind">&#64;</span>_radio&#34; <span class="cmpt">CheckedCallback</span>&#61;&#34;onCheck&#34; &#47;&gt; <br />
+		</div>
+	</Usage>
+</ComponentExample>
+
 
 @code {
 	[CascadingParameter]
@@ -70,11 +120,6 @@
 		return base.OnInitializedAsync();
 	}
 
-	protected override Task OnParametersSetAsync()
-	{
-		return base.OnParametersSetAsync();
-	}
-
 	private List<DSCConfig> _basicRadioGroup = new List<DSCConfig>
 	{
 		new DSCConfig
@@ -87,20 +132,68 @@
 			Name = "Standard Radio",
 			Label = new DSCLabelConfig { Label = "Option 1", Position = Position.Left }
 		},
+		new DSCConfig
+		{
+			Name = "Standard Radio",
+			Label = new DSCLabelConfig { Label = "Option 2", Position = Position.Left }
+		}
 	};
 
-	private List<DSCConfig> _basicRadioGroup1 = new List<DSCConfig>
+	private List<DSCConfig> _iconRadioGroup = new List<DSCConfig>
 	{
 		new DSCConfig
 		{
-			Name = "Standard Radio1",
-			Label = new DSCLabelConfig { Label = "Option 3", Position = Position.Left },
+			Name = "Icon Radio",
+			Label = new DSCLabelConfig { Label = "Option 0", Position = Position.Right },
 		},
 		new DSCConfig
 		{
-			Name = "Standard Radio1",
-			Label = new DSCLabelConfig { Label = "Option 4", Position = Position.Left }
+			Name = "Icon Radio",
+			Label = new DSCLabelConfig { Label = "Option 1", Position = Position.Right }
 		},
+		new DSCConfig
+		{
+			Name = "Icon Radio",
+			Label = new DSCLabelConfig { Label = "Option 2", Position = Position.Right }
+		}
+	};
+
+	private List<DSCConfig> _imageRadioGroup = new List<DSCConfig>
+	{
+		new DSCConfig
+		{
+			Name = "Image Radio",
+			Label = new DSCLabelConfig { Label = "Option 0", Position = Position.Left },
+		},
+		new DSCConfig
+		{
+			Name = "Image Radio",
+			Label = new DSCLabelConfig { Label = "Option 1", Position = Position.Left }
+		},
+		new DSCConfig
+		{
+			Name = "Image Radio",
+			Label = new DSCLabelConfig { Label = "Option 2", Position = Position.Left }
+		}
+	};
+
+	private List<DSCConfig> _switchRadioGroup = new List<DSCConfig>
+	{
+		new DSCConfig
+		{
+			Name = "Switch Radio",
+			Label = new DSCLabelConfig { Label = "Option 0", Position = Position.Left },
+		},
+		new DSCConfig
+		{
+			Name = "Switch Radio",
+			Label = new DSCLabelConfig { Label = "Option 1", Position = Position.Left }
+		},
+		new DSCConfig
+		{
+			Name = "Switch Radio",
+			Label = new DSCLabelConfig { Label = "Option 2", Position = Position.Left }
+		}
 	};
 
 	private void onCheck(string value)
