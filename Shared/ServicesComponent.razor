@@ -1,0 +1,29 @@
+﻿<div class="row mt-5 services">
+	<h4 class="p-0">DSC Service</h4>
+	<p class="p-0">The DSC Components library offers a lightweight service to provide additional functionality to certain components.  This service is mostly internal to the library itself and, idealy, requires no user interaction.  However, there are certain components that are dependent on top level/consuming application interactions.</p>
+	<table class="table table-responsive">
+		<thead>
+			<th>Method</th>
+			<th>Description</th>
+			<th>Example</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>CloseDropdowns</td>
+				<td>Closes all open dropdowns that are currently open and not being interacted with.</td>
+				<td>
+					<span class="bind">&#64;inject</span> <span class="cmpt">IDSCService</span> DSCService
+					<p>&lt;<span class="var">div</span> <span class="bind">class</span>&#61;&#34;container-fluid page&#34; <span class="bind">&#64;onclick</span>&#61;&#34;closeDropdowns&#34;&gt;<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="bind">&#64;</span>Body<br />
+					&lt;<span class="var">/div</span>&gt;</p>
+
+					<p>
+						<span class="bind">&#64;code&#123;</span><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">void</span> closeDropdowns() &#61;&gt; DSCService.CloseDropdowns()&#59;<br />
+						<span class="bind">&#125;</span>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

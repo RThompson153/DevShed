@@ -108,73 +108,9 @@
 	</Usage>
 </ComponentExample>
 
-<CssOverridesComponent />
+<ServicesComponent />
 
-@*<APIComponent Header="@_apiHeader">
-	<tr><td colspan="@_apiHeader.Count()"><h5>DSCSelect</h5></td></tr>
-	<tr>
-		<td>Config</td>
-		<td>Required - <span class="cmpt">DSCInputConfig</span></td>
-		<td>N/A</td>
-		<td>The <span class="cmpt">DSCInputConfig </span> model used to create the component.</td>
-	</tr>
-	<tr>
-		<td>Expanded</td>
-		<td>Required - bool</td>
-		<td>False</td>
-		<td>Component expanded state.</td>
-	</tr>
-	<tr><td colspan="@_apiHeader.Count()"><h5>DSCSelectItem</h5></td></tr>
-	<tr>
-		<td>Value</td>
-		<td>Required - object</td>
-		<td>null</td>
-		<td>Value of the select item.</td>
-	</tr>
-	<tr>
-		<td>SelectCallback</td>
-		<td>Optional - EventCallback</td>
-		<td>null</td>
-		<td>Callback method to fire when selecting an item.</td>
-	</tr>
-	<tr><td colspan="@_apiHeader.Count()"><h5>DSCInputConfig</h5></td></tr>
-	@foreach(var row in _apiRows)
-	{
-		<tr>
-			<td>@row.Property</td>
-			<td>@row.Type</td>
-			<td>@row.DefaultValue</td>
-			<td>@row.Description</td>
-		</tr>
-	}
-	<tr><td colspan="@_apiHeader.Count()"><h5>DSCLabelConfig</h5></td></tr>
-	<tr>
-		<td>Label</td>
-		<td>Optional - string</td>
-		<td>null</td>
-		<td>The label name for the component.</td>
-	</tr>
-	<tr>
-		<td>LabelPosition</td>
-		<td>Optional - <span class="cmpt">LabelPosition</span></td>
-		<td>null</td>
-		<td>The position of the component's label.</td>
-	</tr>
-	<tr><td colspan="@_apiHeader.Count()"><h5>DSCService</h5></td></tr>
-	<tr>
-		<td>IDSCService</td>
-		<td>Required</td>
-		<td>N/A</td>
-		<td>Injectable service used to manage component interactions.</td>
-	</tr>
-	<tr><td colspan="@_apiHeader.Count()"><h6>Methods</h6></td></tr>
-	<tr>
-		<td>CloseDropdowns</td>
-		<td>Optional</td>
-		<td>N/A</td>
-		<td>Closes all open dropdowns. Place as a click event on the root element of your page.</td>
-	</tr>
-</APIComponent>*@
+<CssOverridesComponent />
 
 @code {
 	[CascadingParameter]
